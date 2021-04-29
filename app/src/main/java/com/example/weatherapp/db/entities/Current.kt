@@ -1,17 +1,16 @@
-package com.example.weatherapp.network.entities
+package com.example.weatherapp.db.entities
 
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+const val CURRENT_WEATHER_ID = 0
+@Entity(tableName="current_weather")
 data class Current(
-    @SerializedName("clouds")
-    val clouds: Int,
-    @SerializedName("dew_point")
-    val dewPoint: Double,
     @SerializedName("dt")
     val dt: Int,
-    @SerializedName("feels_like")
-    val feelsLike: Double,
     @SerializedName("humidity")
     val humidity: Int,
     @SerializedName("pressure")
@@ -22,14 +21,14 @@ data class Current(
     val sunset: Int,
     @SerializedName("temp")
     val temp: Double,
-    @SerializedName("uvi")
-    val uvi: Double,
-    @SerializedName("visibility")
-    val visibility: Int,
-    @SerializedName("weather")
+    @Embedded(prefix = "weather_")
     val weather: List<Weather>,
     @SerializedName("wind_deg")
     val windDeg: Int,
     @SerializedName("wind_speed")
     val windSpeed: Int
 )
+{
+    @PrimaryKey(autoGenerate = false)
+    var id:Int = CURRENT_WEATHER_ID
+}

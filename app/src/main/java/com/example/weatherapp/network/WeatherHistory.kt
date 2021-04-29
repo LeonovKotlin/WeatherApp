@@ -1,8 +1,8 @@
 package com.example.weatherapp.network
 
 
-import com.example.weatherapp.network.entities.Current
-import com.example.weatherapp.network.entities.Hourly
+import com.example.weatherapp.db.entities.Current
+import com.example.weatherapp.db.entities.Hourly
 import com.google.gson.annotations.SerializedName
 
 data class WeatherHistory(
