@@ -10,4 +10,5 @@ interface UnitSpeceficCurrentWeather {
     val windSpeed: Int
     val description: String
     val main: String
+    val icon: String
 }
