@@ -14,13 +14,13 @@ override val pressure: Int,
 @ColumnInfo(name="sunrise")
 override val sunrise: Int,
 @ColumnInfo(name="sunset")
-override val sunset: Int,
-@ColumnInfo(name="wind_speed")
-override val windSpeed: Int,
-@ColumnInfo(name="weather_description")
-override val description: String,
-@ColumnInfo(name="weather_main")
-override val main: String,
-@ColumnInfo(name="weather_icon")
-override val icon: String
+override val sunset: Int
+//@ColumnInfo(name="wind_speed")
+//override val windSpeed: Int,
+//@ColumnInfo(name="weather_description")
+//override val description: String,
+//@ColumnInfo(name="weather_main")
+//override val main: String,
+//@ColumnInfo(name="weather_icon")
+//override val icon: String
 ) : UnitSpeceficCurrentWeather

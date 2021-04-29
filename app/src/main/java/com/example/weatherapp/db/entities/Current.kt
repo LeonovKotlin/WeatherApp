@@ -21,10 +21,8 @@ data class Current(
     val sunset: Int,
     @SerializedName("temp")
     val temp: Double,
-    @Embedded(prefix = "weather_")
-    val weather: List<Weather>,
-    @SerializedName("wind_deg")
-    val windDeg: Int,
+//    @Embedded(prefix = "weather_")
+//    val weather: List<Weather>,
     @SerializedName("wind_speed")
     val windSpeed: Int
 )

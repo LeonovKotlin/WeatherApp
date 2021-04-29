@@ -7,8 +7,8 @@ interface UnitSpeceficCurrentWeather {
     val sunrise: Int
     val sunset: Int
     val temp: Double
-    val windSpeed: Int
-    val description: String
-    val main: String
-    val icon: String
+//    val windSpeed: Int
+//    val description: String
+//    val main: String
+//    val icon: String
 }
