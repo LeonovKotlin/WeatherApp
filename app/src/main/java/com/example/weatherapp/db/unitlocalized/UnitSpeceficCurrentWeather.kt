@@ -1,10 +1,13 @@
 package com.example.weatherapp.db.unitlocalized
 
 interface UnitSpeceficCurrentWeather {
+    val dt: Int
+    val humidity: Int
+    val pressure: Int
+    val sunrise: Int
+    val sunset: Int
     val temp: Double
-    val sunrise: Long
-    val sunset: Long
-    val tempMin: Double
-    val tempMax: Double
     val windSpeed: Int
+    val description: String
+    val main: String
 }
