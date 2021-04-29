@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/mTodayFragment"
+    android:title="Today"
+    android:icon="@drawable/today"/>
+
+<item
+    android:id="@+id/mForecastFragment"
+    android:title="Forecast"
+    android:icon="@drawable/forecast"/>
+</menu>
