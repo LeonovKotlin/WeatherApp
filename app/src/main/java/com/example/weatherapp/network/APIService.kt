@@ -26,7 +26,9 @@ interface APIService {
 //    @Query("dt") period: Long = 1619481600,
 //    @Query("appid") apiKey: String = Constants.openWeatherApiKey
     companion object  {
-        operator fun invoke() : APIService {
+        operator fun invoke(
+                connectInterceptor: ConnectInterceptor
+        ) : APIService {
 
             val reqestInterceptor = Interceptor { chain->
                 val url = chain.request()
@@ -41,6 +43,7 @@ interface APIService {
                 return@Interceptor chain.proceed(reqest)
             }
                     val okHttpClient = OkHttpClient.Builder()
+                            .addInterceptor(connectInterceptor)
                         .addInterceptor(reqestInterceptor)
                         .build()
                         return Retrofit.Builder()

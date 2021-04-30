@@ -6,11 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.weatherapp.R
 import com.example.weatherapp.network.APIService
+import com.example.weatherapp.network.ConnectInterceptorImpl
 import com.example.weatherapp.network.WeatherHistory
+import com.example.weatherapp.network.WeatherNetDataSourceImpl
 import kotlinx.android.synthetic.main.today_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,10 +33,13 @@ class TodayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val apiService = APIService()
-        GlobalScope.launch (Dispatchers.Main){
-            val weatherHistory =apiService.getLastWeekWeather().body()
+        val apiService = APIService(ConnectInterceptorImpl(this.context!!))
+        val weatherNetDataSource = WeatherNetDataSourceImpl(apiService)
+        weatherNetDataSource.downloadedCurrentWeather.observe(this, Observer {
             tv.text = weatherHistory?.current.toString()
+        })
+        GlobalScope.launch (Dispatchers.Main){
+        weatherNetDataSource.fetchCurrentWeather(53.9,27.56,1619481600)
         }
 //        getHistoricalWeather()
 

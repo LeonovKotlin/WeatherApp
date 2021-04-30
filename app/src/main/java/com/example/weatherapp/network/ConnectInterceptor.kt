@@ -1,0 +1,7 @@
+package com.example.weatherapp.network
+
+import okhttp3.Interceptor
+
+interface ConnectInterceptor : Interceptor
+
+
