@@ -19,7 +19,7 @@ interface APIService {
         @Query("lon") lon: Double = 27.56,
         @Query("dt") period: Long = 1619481600,
 //        @Query("appid") apiKey: String = Constants.openWeatherApiKey
-    ): Response<WeatherHistory>
+    ): Deferred<WeatherHistory>
 //    Deferred<WeatherHistory>
 //    @Query("lat") lat: Double = 53.9,
 //    @Query("lon") lon: Double = 27.56,
@@ -43,7 +43,7 @@ interface APIService {
                 return@Interceptor chain.proceed(reqest)
             }
                     val okHttpClient = OkHttpClient.Builder()
-                            .addInterceptor(connectInterceptor)
+                        .addInterceptor(connectInterceptor)
                         .addInterceptor(reqestInterceptor)
                         .build()
                         return Retrofit.Builder()
@@ -51,8 +51,8 @@ interface APIService {
                             .client(okHttpClient)
                             .baseUrl(Constants.openWeatherBaseURL)
                             .addConverterFactory(GsonConverterFactory.create())
-//                            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//                          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build()
                             .create(APIService::class.java)
             }

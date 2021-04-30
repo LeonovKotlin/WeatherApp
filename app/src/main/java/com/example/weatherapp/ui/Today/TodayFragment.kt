@@ -1,5 +1,6 @@
 package com.example.weatherapp.ui.Today
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -36,7 +37,9 @@ class TodayFragment : Fragment() {
         val apiService = APIService(ConnectInterceptorImpl(this.context!!))
         val weatherNetDataSource = WeatherNetDataSourceImpl(apiService)
         weatherNetDataSource.downloadedCurrentWeather.observe(this, Observer {
-            tv.text = weatherHistory?.current.toString()
+            tv.text = it.toString()
+//            tv.text = weatherHistory?.current.toString()
+
         })
         GlobalScope.launch (Dispatchers.Main){
         weatherNetDataSource.fetchCurrentWeather(53.9,27.56,1619481600)

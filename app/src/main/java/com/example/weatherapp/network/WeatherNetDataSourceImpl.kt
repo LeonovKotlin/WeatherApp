@@ -18,7 +18,8 @@ class WeatherNetDataSourceImpl(
         try {
             val fetchedCurrentWeather = apiService
                     .getLastWeekWeather(lat,lon,period)
-            _downloadedCurrentWeather.postValue(fetchedCurrentWeather)///
+                    .await()
+                    _downloadedCurrentWeather.postValue(fetchedCurrentWeather)
 
         }
         catch (e: NoConnectivityExeption) {
