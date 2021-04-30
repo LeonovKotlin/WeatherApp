@@ -23,8 +23,8 @@ data class Current(
     val temp: Double,
 //    @Embedded(prefix = "weather_")
 //    val weather: List<Weather>,
-    @SerializedName("wind_speed")
-    val windSpeed: Int
+//    @SerializedName("wind_speed")
+//    val windSpeed: Int
 )
 {
     @PrimaryKey(autoGenerate = false)

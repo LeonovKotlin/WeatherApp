@@ -1,6 +1,7 @@
 package com.example.weatherapp.network
 
 import com.example.weatherapp.db.entities.Current
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -18,7 +19,8 @@ interface APIService {
         @Query("lon") lon: Double = 27.56,
         @Query("dt") period: Long = 1619481600,
 //        @Query("appid") apiKey: String = Constants.openWeatherApiKey
-    ): Response<Current>
+    ): Response<WeatherHistory>
+//    Deferred<WeatherHistory>
 //    @Query("lat") lat: Double = 53.9,
 //    @Query("lon") lon: Double = 27.56,
 //    @Query("dt") period: Long = 1619481600,
@@ -46,7 +48,8 @@ interface APIService {
                             .client(okHttpClient)
                             .baseUrl(Constants.openWeatherBaseURL)
                             .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                          .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build()
                             .create(APIService::class.java)
             }

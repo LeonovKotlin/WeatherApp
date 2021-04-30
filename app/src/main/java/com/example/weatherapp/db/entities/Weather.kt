@@ -1,8 +1,9 @@
 package com.example.weatherapp.db.entities
 
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
-
+@Entity(tableName="weather")
 data class Weather(
     @SerializedName("description")
     val description: String,

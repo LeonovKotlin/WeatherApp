@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.weatherapp.R
 import com.example.weatherapp.network.APIService
@@ -18,9 +19,7 @@ import retrofit2.HttpException
 import java.io.IOException
 const val TAG = "MainActivity"
 class TodayFragment : Fragment() {
-
-
-
+//private lateinit var viewModel: TodayViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,10 +29,11 @@ class TodayFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val apiService = APIService()
         GlobalScope.launch (Dispatchers.Main){
-            val weatherHistory =apiService.getLastWeekWeather()
-            tv.text = weatherHistory.body().toString()
+            val weatherHistory =apiService.getLastWeekWeather().body()
+            tv.text = weatherHistory?.current.toString()
         }
 //        getHistoricalWeather()
 
