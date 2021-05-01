@@ -1,6 +1,6 @@
 package com.example.weatherapp.db.unitlocalized
 
-interface UnitSpeceficCurrentWeather {
+interface UnitSpeceficCurrentWeather  {
     val dt: Int
     val humidity: Int
     val pressure: Int
