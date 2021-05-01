@@ -18,13 +18,10 @@ interface APIService {
         @Query("lat") lat: Double = 53.9,
         @Query("lon") lon: Double = 27.56,
         @Query("dt") period: Long = 1619481600,
-//        @Query("appid") apiKey: String = Constants.openWeatherApiKey
+//      @Query("appid") apiKey: String = Constants.openWeatherApiKey
     ): Response<WeatherHistory>
 //    Deferred<WeatherHistory>
-//    @Query("lat") lat: Double = 53.9,
-//    @Query("lon") lon: Double = 27.56,
-//    @Query("dt") period: Long = 1619481600,
-//    @Query("appid") apiKey: String = Constants.openWeatherApiKey
+
     companion object  {
         operator fun invoke(
                 connectInterceptor: ConnectInterceptor
@@ -51,7 +48,7 @@ interface APIService {
                             .client(okHttpClient)
                             .baseUrl(Constants.openWeatherBaseURL)
                             .addConverterFactory(GsonConverterFactory.create())
-//                            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+//                          .addCallAdapterFactory(CoroutineCallAdapterFactory())
                           .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build()
                             .create(APIService::class.java)
