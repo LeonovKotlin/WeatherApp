@@ -39,7 +39,12 @@ class ForecastRepositoryImpl(
         }
     }
     private suspend fun initWeatherData() {
-        if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
+        if (if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1))
+            } else {
+                TODO("VERSION.SDK_INT < O")
+            }
+        )
             fetchCurrentWeather()
     }
     private suspend fun fetchCurrentWeather() {
@@ -51,7 +56,11 @@ class ForecastRepositoryImpl(
 //    }
     private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
 //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
-        return lastFetchTime.isBefore(thirtyMinutesAgo)
+        val thirtyMinutesAgo = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            ZonedDateTime.now().minusMinutes(30)
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+    return lastFetchTime.isBefore(thirtyMinutesAgo)
     }
 }
