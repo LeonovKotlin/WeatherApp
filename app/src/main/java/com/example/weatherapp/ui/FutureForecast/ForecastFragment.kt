@@ -1,6 +1,5 @@
-package com.example.weatherapp.ui.Forecast
+package com.example.weatherapp.ui.FutureForecast
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
