@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="txt_info">Info</string>
+    <string name="txt_humidity">Humidity</string>
+    <string name="humidity_am">5:30am</string>
+    <string name="txt_error">error</string>
+    <string name="txt_location">Location</string>
+    <string name="txt_updated_at">updated_at</string>
+    <string name="txt_status">Clear Sky</string>
+    <string name="txt_temp">25ͦ C</string>
+    <string name="txt_min_temp">min ͦ temp</string>
+    <string name="txt_max_temp">max ͦ temp</string>
+    <string name="txt_sunrise_am">5:30am</string>
+    <string name="txt_sunrise">Sunrise</string>
+    <string name="txt_pressure_am">5:30am</string>
+    <string name="txt_pressure">Pressure</string>
+    <string name="txt_wind_am">5:30am</string>
+    <string name="txt_wind">Wind</string>
+    <string name="todo">TODO</string>
+    <string name="txt_sunset_am">5:30am</string>
+    <string name="sunset">Sunset</string>
 </resources>
