@@ -17,6 +17,6 @@
     <string name="txt_wind_am">5:30am</string>
     <string name="txt_wind">Wind</string>
     <string name="todo">TODO</string>
-    <string name="txt_sunset_am">5:30am</string>
+    <string name="txt_sunset">5:30am</string>
     <string name="sunset">Sunset</string>
 </resources>

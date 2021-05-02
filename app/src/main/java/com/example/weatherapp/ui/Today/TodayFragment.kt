@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders.of
@@ -64,10 +65,46 @@ private val viewModelFactory: TodayViewModelFactory by instance()
     private fun bindUI()=launch {
         val todayWeather=viewModel.weather.await()
         todayWeather.observe(viewLifecycleOwner, Observer {
-            if (it==null)
-                return@Observer
-            tv.text=it.toString()
+            if (it==null) return@Observer
+            group_load.visibility = View.GONE
+            updateLocation("Minsk")
+            updateDate()
+            updateTemp(it.temp)
+            updatePressure(it.pressure)
+            updateSunrise(it.sunrise)
+            updateSunset(it.sunset)
+
         })
+    }
+    private fun chooseLocUnit(metric: String, imperial: String): String{
+        return if (viewModel.isMetric) "mm" else "in"
+
+    }
+    private fun updateLocation(loc:String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title=loc
+    }
+    private fun updateDate() {
+        (activity as? AppCompatActivity)?.supportActionBar?.subtitle="Today"
+    }
+    private fun updateTemp(temp: Double) {
+        val unit = chooseLocUnit("C","F")
+        tv_temp.text = "$temp$unit"
+//        tv_description.text = "Rain$description$unit"
+    }
+    private fun updateHudimity(hudimity: Int) {
+        tv_humidity.text=hudimity.toString()
+    }
+   private fun updatePressure(pressure: Int) {
+            val unit = chooseLocUnit("mm","in")
+            tv_pressure.text="Pressure: $pressure $unit"
+    }
+    private fun updateSunrise(sunrise: Int) {
+        val unit = chooseLocUnit("mm","in")
+        tv_sunrise.text="Sunrise: $sunrise $unit"
+    }
+    private fun updateSunset(sunset: Int) {
+        val unit = chooseLocUnit("mm", "in")
+        tv_sunset.text = "Sunset: $sunset $unit"
     }
 //observ Activ
 //    private fun getHistoricalWeather() {
