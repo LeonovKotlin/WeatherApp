@@ -56,11 +56,15 @@ class TodayFragment : FragmentScoped(), KodeinAware {
 
     private fun bindUI() = launch {
         val todayWeather = viewModel.weather.await()
+        val weatherLocation = viewModel.weatherLocation.await()
+        weatherLocation.observe(viewLifecycleOwner, Observer { coord ->
+            if (coord == null) return@Observer              /////
+            updateLocation(coord.lat.toString())            /////API
+        })
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 //            tv_all.text = it.toString()
  //           group_load.visibility = View.GONE
-            updateLocation("Minsk")
             updateDate()
             updateTemp(it.temp)
             updatePressure(it.pressure)
