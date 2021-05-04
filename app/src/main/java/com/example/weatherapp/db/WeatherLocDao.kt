@@ -14,6 +14,6 @@ interface WeatherLocDao {
      fun upsert(weatherLocation: Coord)
 
      @Query("select * from weather_location where id=$CURRENT_WEATHER_ID")
-     fun getLocation() : LiveData<WeatherLocDao>
+     fun getLocation() : LiveData<Coord>
 
 }
