@@ -1,9 +1,9 @@
-package com.example.weatherapp.db.entities
+package com.example.weatherapp.db.entities.current
 
 
 import com.google.gson.annotations.SerializedName
 
-data class WeatherX(
+data class Weather(
     @SerializedName("description")
     val description: String,
     @SerializedName("icon")

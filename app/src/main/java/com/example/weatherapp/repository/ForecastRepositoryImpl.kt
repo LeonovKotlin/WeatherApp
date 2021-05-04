@@ -1,24 +1,19 @@
 package com.example.weatherapp.repository
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
-import com.example.weatherapp.network.WeatherHistory
+import com.example.weatherapp.network.WeatherCurrentResponse
 import com.example.weatherapp.network.WeatherNetDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ForecastRepositoryImpl(
-        private val currentWeaherDao: CurrentWeatherDao,
+        private val currentWeatherDao: CurrentWeatherDao,
         private val weatherNetDataSource: WeatherNetDataSource
 ): ForecastRepository {
     init {
@@ -29,13 +24,13 @@ class ForecastRepositoryImpl(
     override suspend fun getCurrentWeather(metric: Boolean): LiveData<out UnitSpeceficCurrentWeather> {
         return withContext(Dispatchers.IO) {
             initWeatherData()
-            return@withContext if (metric) currentWeaherDao.getWeatherMetric()
-            else currentWeaherDao.getWeatherImperial()
+            return@withContext if (metric) currentWeatherDao.getWeatherMetric()
+            else currentWeatherDao.getWeatherImperial()
         }
     }
-    private fun persistFechedCurrentWeather(fetchedWeather: WeatherHistory) {
+    private fun persistFechedCurrentWeather(fetchedWeather: WeatherCurrentResponse) {
         GlobalScope.launch(Dispatchers.IO) {
-            currentWeaherDao.upsert(fetchedWeather.current)
+            currentWeatherDao.upsert(fetchedWeather.weatherCurrentEntity) ///
         }
     }
     private suspend fun initWeatherData() {
@@ -48,7 +43,7 @@ class ForecastRepositoryImpl(
             fetchCurrentWeather()
     }
     private suspend fun fetchCurrentWeather() {
-        weatherNetDataSource.fetchCurrentWeather(53.9, 27.56,1619481600)
+        weatherNetDataSource.fetchCurrentWeather("GOMEL")////
     }
 //    private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime) : Boolean {
 //        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)

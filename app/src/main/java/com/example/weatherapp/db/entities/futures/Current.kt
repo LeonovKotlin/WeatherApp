@@ -1,7 +1,6 @@
-package com.example.weatherapp.db.entities
+package com.example.weatherapp.db.entities.futures
 
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName

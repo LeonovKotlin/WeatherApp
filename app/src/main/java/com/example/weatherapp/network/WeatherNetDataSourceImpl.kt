@@ -4,20 +4,18 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.weatherapp.network.internal.NoConnectivityExeption
-import okhttp3.Response
-import java.nio.channels.NotYetConnectedException
 
 class WeatherNetDataSourceImpl(
-        private val apiService: APIService
+private val apiService: APIService
 ) : WeatherNetDataSource {
-    private val _downloadedCurrentWeather = MutableLiveData<WeatherHistory>()
-    override val downloadedCurrentWeather: LiveData<WeatherHistory>
+    private val _downloadedCurrentWeather = MutableLiveData<WeatherCurrentResponse>()
+    override val downloadedCurrentWeather: LiveData<WeatherCurrentResponse>
         get() = _downloadedCurrentWeather
 
-    override suspend fun fetchCurrentWeather(lat: Double, lon: Double, period: Long) {
+    override suspend fun fetchCurrentWeather(location: String) {
         try {
             val fetchedCurrentWeather = apiService
-                    .getLastWeekWeather(lat,lon,period)
+                    .getLastWeekWeather(location)
                     _downloadedCurrentWeather.postValue(fetchedCurrentWeather.body())
 
         }
