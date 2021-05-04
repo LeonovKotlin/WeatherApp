@@ -1,5 +1,6 @@
 package com.example.weatherapp.repository
 
+import android.location.LocationProvider
 import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
@@ -7,6 +8,7 @@ import com.example.weatherapp.db.entities.current.Coord
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
 import com.example.weatherapp.network.WeatherCurrentResponse
 import com.example.weatherapp.network.WeatherNetDataSource
+import com.example.weatherapp.network.provider.LocationPrivider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,7 +19,8 @@ import java.util.*
 class ForecastRepositoryImpl(
         private val currentWeatherDao: CurrentWeatherDao,
         private val weatherLocDao: WeatherLocDao,
-        private val weatherNetDataSource: WeatherNetDataSource
+        private val weatherNetDataSource: WeatherNetDataSource,
+        private val locationProvider: LocationPrivider
 ): ForecastRepository {
     init {
         weatherNetDataSource.downloadedCurrentWeather.observeForever { newCurrentWeather ->
@@ -45,7 +48,7 @@ class ForecastRepositoryImpl(
     private suspend fun initWeatherData() {
         val lastWeatherLocation = weatherLocDao.getLocation().value
         if (if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if(lastWeatherLocation == null) {
+            if(lastWeatherLocation == null || locationProvider.locationChanged(lastWeatherLocation)) {
                 fetchCurrentWeather()
                 return
             }
@@ -57,7 +60,7 @@ class ForecastRepositoryImpl(
             fetchCurrentWeather()
     }
     private suspend fun fetchCurrentWeather() {
-        weatherNetDataSource.fetchCurrentWeather("GOMEL")////
+        weatherNetDataSource.fetchCurrentWeather(locationProvider.getLocationStr())
     }
 //    private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime) : Boolean {
 //        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
