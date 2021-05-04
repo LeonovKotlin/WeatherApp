@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.R
+import com.example.weatherapp.databinding.TodayFragmentBinding
 import com.example.weatherapp.ui.base.FragmentScoped
 import kotlinx.android.synthetic.main.today_fragment.*
 import kotlinx.coroutines.launch
@@ -17,24 +19,28 @@ import org.kodein.di.generic.instance
 //const val TAG = "MainActivity"
 
 class TodayFragment : FragmentScoped(), KodeinAware {
-override val kodein by closestKodein()
-private val viewModelFactory: TodayViewModelFactory by instance()
+    override val kodein by closestKodein()
+    private val viewModelFactory: TodayViewModelFactory by instance()
+    lateinit var binding: TodayFragmentBinding
 
     companion object {
-        fun newInstace()=TodayFragment
+        fun newInstace() = TodayFragment
     }
+
     private lateinit var viewModel: TodayViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.today_fragment, container, false)
+        binding = TodayFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel=ViewModelProvider(this, viewModelFactory).get(TodayViewModel::class.java)//
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(TodayViewModel::class.java)//
         bindUI()
 //        val apiService = APIService(ConnectInterceptorImpl(this.requireContext()))
 //        val weatherNetDataSource = WeatherNetDataSourceImpl(apiService)
@@ -48,57 +54,55 @@ private val viewModelFactory: TodayViewModelFactory by instance()
 //        getHistoricalWeather()
     }
 
-    private fun bindUI()= launch {
-        val todayWeather=viewModel.weather.await()
+    private fun bindUI() = launch {
+        val todayWeather = viewModel.weather.await()
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
-            tv_all.text = it.toString()
+//            tv_all.text = it.toString()
+ //           group_load.visibility = View.GONE
+            updateLocation("Minsk")
+            updateDate()
+            updateTemp(it.temp)
+            updatePressure(it.pressure)
+            updateHudimity(it.humidity)
+            updateTempMax(it.tempMax)
+            updateTempMin(it.tempMin)
+//          Glide.with(this@TodayFragment).load("${it.icon}")
+//         .into(icon_weather)
         })
     }
-}
 
-//
-//            group_load.visibility = View.GONE
-//            updateLocation("Minsk")
-//            updateDate()
-//            updateTemp(it.temp)
-//            updatePressure(it.pressure)
-//            updateSunrise(it.sunrise)
-//            updateSunset(it.sunset)
-////          Glide.with(this@TodayFragment).load("${it.icon}")
-////                    .into(icon_weather)
-//        })
-//    }
-//    private fun chooseLocUnit(metric: String, imperial: String): String{
-//        return if (viewModel.isMetric) "mm" else "in"
-//
-//    }
-//    private fun updateLocation(loc:String) {
-//        (activity as? AppCompatActivity)?.supportActionBar?.title=loc
-//    }
-//    private fun updateDate() {
-//        (activity as? AppCompatActivity)?.supportActionBar?.subtitle="Today"
-//    }
-//    private fun updateTemp(temp: Double) {
-//        val unit = chooseLocUnit("C","F")
-//        tv_temp.text = "$temp$unit"
-////        tv_description.text = "Rain$description$unit"
-//    }
-//    private fun updateHudimity(hudimity: Int) {
-//        tv_humidity.text=hudimity.toString()
-//    }
-//   private fun updatePressure(pressure: Int) {
-//            val unit = chooseLocUnit("mm","in")
-//            tv_pressure.text="Pressure: $pressure $unit"
-//    }
-//    private fun updateSunrise(sunrise: Int) {
-//        val unit = chooseLocUnit("mm","in")
-//        tv_sunrise.text="Sunrise: $sunrise $unit"
-//    }
-//    private fun updateSunset(sunset: Int) {
-//        val unit = chooseLocUnit("mm", "in")
-//        tv_sunset.text = "Sunset: $sunset $unit"
-//    }
+    private fun chooseLocUnit(metric: String, imperial: String): String {
+        return if (viewModel.isMetric) metric else imperial
+    }
+    private fun updateLocation(location: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = location
+    }
+    private fun updateDate() {
+        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
+    }
+    private fun updateTemp(temp: Double) {
+        val unit = chooseLocUnit("C", "F")
+        binding.tvTemp.text = "$temp$unit"
+    }
+    private fun updateTempMax(tempMax: Double) {
+        val unit = chooseLocUnit("C", "F")
+        binding.tvTempMax.text = "$tempMax$unit"
+    }
+    private fun updateTempMin(tempMin: Double) {
+        val unit = chooseLocUnit("C", "F")
+        binding.tvTempMin.text = "$tempMin$unit"
+        }
+    private fun updateHudimity(hudimity: Int) {
+        tv_humidity.text = hudimity.toString()
+    }
+    private fun updatePressure(pressure: Int) {
+        val unit = chooseLocUnit("mm", "in")
+        tv_pressure.text = "Pressure: $pressure $unit"
+    }
+
+    }
+
 //observ Activ
 //    private fun getHistoricalWeather() {
 //        lifecycleScope.launchWhenCreated {

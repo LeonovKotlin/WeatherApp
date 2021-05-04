@@ -9,28 +9,28 @@ data class WeatherCurrentResponse(
     val base: String,
 //    @SerializedName("main")
 //    val weatherCurrentEntity: WeatherCurrentEntity,
-    @SerializedName("clouds")
+//    @SerializedName("clouds")
     val clouds: Clouds,
-        @SerializedName("cod")
+//        @SerializedName("cod")
     val cod: Int,
         @SerializedName("coord")
     val coord: Coord,
-        @SerializedName("dt")
+//        @SerializedName("dt")
     val dt: Int,
-        @SerializedName("id")
+//        @SerializedName("id")
     val id: Int,
         @SerializedName("main")
     val main: Main,
-        @SerializedName("name")
+//        @SerializedName("name")
     val name: String,
-        @SerializedName("sys")
+//        @SerializedName("sys")
     val sys: Sys,
-        @SerializedName("timezone")
+//        @SerializedName("timezone")
     val timezone: Int,
-        @SerializedName("visibility")
+//        @SerializedName("visibility")
     val visibility: Int,
-        @SerializedName("weather")
+//        @SerializedName("weather")
     val weather: List<Weather>,
-        @SerializedName("wind")
+//        @SerializedName("wind")
     val wind: Wind
 )
