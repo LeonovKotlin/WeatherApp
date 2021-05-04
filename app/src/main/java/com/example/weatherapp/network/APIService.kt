@@ -1,5 +1,6 @@
 package com.example.weatherapp.network
 
+import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -18,7 +19,7 @@ suspend fun getLastWeekWeather(
 //        @Query("lon") lon: Double = 27.56,
 //        @Query("dt") period: Long = 1619481600,
 //      @Query("appid") apiKey: String = Constants.openWeatherApiKey
-    ): Response<WeatherCurrentResponse>
+    ): Deferred<WeatherCurrentResponse>
 //    Deferred<WeatherHistory>
 
     companion object  {

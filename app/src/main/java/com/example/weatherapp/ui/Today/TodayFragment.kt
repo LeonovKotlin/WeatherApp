@@ -52,7 +52,7 @@ private val viewModelFactory: TodayViewModelFactory by instance()
         val todayWeather=viewModel.weather.await()
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
-            tv_temp.text = it.toString()
+            tv_all.text = it.toString()
         })
     }
 }

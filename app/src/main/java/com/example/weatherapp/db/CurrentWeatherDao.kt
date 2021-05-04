@@ -6,14 +6,14 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.weatherapp.db.entities.current.CURRENT_WEATHER_ID
-import com.example.weatherapp.db.entities.current.WeatherCurrentEntity
+import com.example.weatherapp.db.entities.current.Main
 import com.example.weatherapp.db.unitlocalized.ImperialCurrentWeather
 import com.example.weatherapp.db.unitlocalized.MetricCurrentWeather
 
 @Dao
 interface CurrentWeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(weather: WeatherCurrentEntity)
+    fun upsert(main: Main)
 
     @Query("select * from current_weather where id=$CURRENT_WEATHER_ID")
     fun getWeatherMetric() : LiveData<MetricCurrentWeather>

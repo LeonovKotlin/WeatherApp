@@ -5,10 +5,10 @@ import com.example.weatherapp.db.entities.current.*
 import com.google.gson.annotations.SerializedName
 
 data class WeatherCurrentResponse(
-        @SerializedName("base")
+    @SerializedName("base")
     val base: String,
-        //
-    val weatherCurrentEntity: WeatherCurrentEntity,
+//    @SerializedName("main")
+//    val weatherCurrentEntity: WeatherCurrentEntity,
     @SerializedName("clouds")
     val clouds: Clouds,
         @SerializedName("cod")

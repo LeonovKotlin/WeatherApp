@@ -16,7 +16,8 @@ private val apiService: APIService
         try {
             val fetchedCurrentWeather = apiService
                     .getLastWeekWeather(location)
-                    _downloadedCurrentWeather.postValue(fetchedCurrentWeather.body())
+                    .await()
+                    _downloadedCurrentWeather.postValue(fetchedCurrentWeather)
 
         }
         catch (e: NoConnectivityExeption) {

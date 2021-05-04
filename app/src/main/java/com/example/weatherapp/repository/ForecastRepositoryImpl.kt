@@ -30,7 +30,7 @@ class ForecastRepositoryImpl(
     }
     private fun persistFechedCurrentWeather(fetchedWeather: WeatherCurrentResponse) {
         GlobalScope.launch(Dispatchers.IO) {
-            currentWeatherDao.upsert(fetchedWeather.weatherCurrentEntity) ///
+            currentWeatherDao.upsert(fetchedWeather.main)
         }
     }
     private suspend fun initWeatherData() {
