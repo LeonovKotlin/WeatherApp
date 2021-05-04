@@ -3,6 +3,8 @@ package com.example.weatherapp.db.unitlocalized
 import androidx.room.ColumnInfo
 
 class MetricCurrentWeather(
+        @ColumnInfo(name = "id")
+        override val id: Int,
         @ColumnInfo(name = "humidity")
         override val humidity: Int,
         @ColumnInfo(name = "pressure")

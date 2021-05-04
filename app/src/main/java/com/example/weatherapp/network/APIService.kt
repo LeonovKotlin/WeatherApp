@@ -1,6 +1,5 @@
 package com.example.weatherapp.network
 
-import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -11,15 +10,11 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
 interface APIService {
-//    @GET("onecall/timemachine")
 @GET("weather")
 suspend fun getLastWeekWeather(
         @Query("q") location: String = "Gomel"
-//        @Query("lat") lat: Double = 53.9,
-//        @Query("lon") lon: Double = 27.56,
-//        @Query("dt") period: Long = 1619481600,
-//      @Query("appid") apiKey: String = Constants.openWeatherApiKey
-    ): Deferred<WeatherCurrentResponse>
+
+    ): Response<WeatherCurrentResponse>
 //    Deferred<WeatherHistory>
 
     companion object  {
@@ -55,3 +50,9 @@ suspend fun getLastWeekWeather(
             }
         }
     }
+
+//        @GET("onecall/timemachine")
+//        @Query("lat") lat: Double = 53.9,
+//        @Query("lon") lon: Double = 27.56,
+//        @Query("dt") period: Long = 1619481600,
+//        @Query("appid") apiKey: String = Constants.openWeatherApiKey

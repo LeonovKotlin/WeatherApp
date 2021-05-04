@@ -13,7 +13,7 @@ import com.example.weatherapp.db.unitlocalized.MetricCurrentWeather
 @Dao
 interface CurrentWeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(main: Main)
+    fun upsert(weather: Main)
 
     @Query("select * from current_weather where id=$CURRENT_WEATHER_ID")
     fun getWeatherMetric() : LiveData<MetricCurrentWeather>
