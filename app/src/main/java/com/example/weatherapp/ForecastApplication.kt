@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.weatherapp.db.ForecastDatabase
 import com.example.weatherapp.network.*
 import com.example.weatherapp.network.provider.LocationPrivider
-import com.example.weatherapp.network.provider.LocationPrividerImpl
 import com.example.weatherapp.repository.ForecastRepository
 import com.example.weatherapp.repository.ForecastRepositoryImpl
 import com.example.weatherapp.ui.Today.TodayViewModelFactory
@@ -12,7 +11,6 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
-import org.kodein.di.bindings.Singleton
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
@@ -25,7 +23,6 @@ class ForecastApplication : Application(), KodeinAware {
         bind() from singleton { ForecastDatabase(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao()}
         bind() from singleton { instance<ForecastDatabase>().weatherLocDao()}
-
         bind<ConnectInterceptor>() with singleton { ConnectInterceptorImpl(instance()) }
         bind() from singleton { APIService(instance()) }
         bind<WeatherNetDataSource>() with singleton {WeatherNetDataSourceImpl(instance())}

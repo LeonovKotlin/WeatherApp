@@ -1,6 +1,5 @@
 package com.example.weatherapp.repository
 
-import android.location.LocationProvider
 import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
@@ -13,7 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.ZonedDateTime
+import kotlinx.datetime.*
+import org.threeten.bp.ZonedDateTime
 import java.util.*
 
 class ForecastRepositoryImpl(
@@ -47,32 +47,29 @@ class ForecastRepositoryImpl(
     }
     private suspend fun initWeatherData() {
         val lastWeatherLocation = weatherLocDao.getLocation().value
-        if (if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             if(lastWeatherLocation == null || locationProvider.locationChanged(lastWeatherLocation)) {
                 fetchCurrentWeather()
                 return
             }
-                isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime)
-            } else {
-                TODO("VERSION.SDK_INT < O")
-            }
-        )
-            fetchCurrentWeather()
+             if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
+             fetchCurrentWeather()
     }
+    //
     private suspend fun fetchCurrentWeather() {
         weatherNetDataSource.fetchCurrentWeather(locationProvider.getLocationStr())
     }
-//    private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime) : Boolean {
-//        val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
-//        return  lastFetchTime.isBefore(thirtyMinutesAgo)
-//    }
-    private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
-//    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val thirtyMinutesAgo = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            ZonedDateTime.now().minusMinutes(30)
-        } else {
-            TODO("VERSION.SDK_INT < O")
-        }
+private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
+    val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
     return lastFetchTime.isBefore(thirtyMinutesAgo)
-    }
 }
+}
+//             if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
+
+
+//    val now = Clock.System.now()
+//    private fun isFetchCurrentNeeded(lastFetchTime: LocalDateTime) : Boolean {
+//        val now = Clock.System.now()
+//        val systemTZ = kotlinx.datetime.TimeZone.currentSystemDefault()
+//        val tomorrow = now.minus(2, DateTimeUnit.DAY, systemTZ)
+//        val threeYearsAndAMonthLater = now.minus(DateTimePeriod(minutes = 30), systemTZ)
+

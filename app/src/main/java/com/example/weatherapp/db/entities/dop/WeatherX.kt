@@ -1,10 +1,9 @@
-package com.example.weatherapp.db.entities.futures
+package com.example.weatherapp.db.entities.dop
 
 
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
-@Entity(tableName="weather")
-data class Weather(
+
+data class WeatherX(
     @SerializedName("description")
     val description: String,
     @SerializedName("icon")

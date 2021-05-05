@@ -1,9 +1,9 @@
 package com.example.weatherapp.network.provider
 
-import com.example.weatherapp.db.entities.futures.WeatherLocation
+import com.example.weatherapp.db.entities.current.Coord
 
 class LocationPrividerImpl : LocationPrivider {
-    override suspend fun LocationChanged(lastWeatherLocation: WeatherLocation): Boolean {
+    override suspend fun locationChanged(lastWeatherLocation: Coord): Boolean {
         TODO("Not yet implemented")
     }
 
