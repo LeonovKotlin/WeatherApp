@@ -63,9 +63,7 @@ private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
     return lastFetchTime.isBefore(thirtyMinutesAgo)
 }
 }
-//             if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
-
-
+//    if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
 //    val now = Clock.System.now()
 //    private fun isFetchCurrentNeeded(lastFetchTime: LocalDateTime) : Boolean {
 //        val now = Clock.System.now()

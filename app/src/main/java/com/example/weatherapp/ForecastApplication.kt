@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.weatherapp.db.ForecastDatabase
 import com.example.weatherapp.network.*
 import com.example.weatherapp.network.provider.LocationPrivider
+import com.example.weatherapp.network.provider.LocationPrividerImpl
 import com.example.weatherapp.repository.ForecastRepository
 import com.example.weatherapp.repository.ForecastRepositoryImpl
 import com.example.weatherapp.ui.Today.TodayViewModelFactory
