@@ -56,14 +56,14 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val weatherLocation = viewModel.weatherLocation.await()
         weatherLocation.observe(viewLifecycleOwner, Observer { coord ->
             if (coord == null) return@Observer              /////
-//            updateLocation(coord.lat.toString())            /////API
+           updateLocation(coord.lat.toString())            /////API
         })
         //name coord
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
 //            tv_all.text = it.toString()
  //           group_load.visibility = View.GONE
-//            updateDate()
+            updateDate()
             updateTemp(it.temp)
             updatePressure(it.pressure)
             updateHudimity(it.humidity)
@@ -77,12 +77,12 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun chooseLocUnit(metric: String, imperial: String): String {
         return if (viewModel.isMetric) metric else imperial
     }
-//    private fun updateLocation(location: String) {
-//        (activity as? AppCompatActivity)?.supportActionBar?.title = location
-//    }
-//    private fun updateDate() {
-//        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
-//    }
+    private fun updateLocation(location: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = location
+    }
+    private fun updateDate() {
+        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
+    }
     private fun updateTemp(temp: Double) {
         val unit = chooseLocUnit("C", "F")
         binding.tvTemp.text = "$temp$unit"

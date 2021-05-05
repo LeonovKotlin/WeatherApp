@@ -4,8 +4,7 @@ import androidx.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
 
 data class ImperialCurrentWeather(
-        @ColumnInfo(name = "id")
-        override val id: Int,
+
         @ColumnInfo(name = "humidity")
         override val humidity: Int,
         @ColumnInfo(name = "pressure")

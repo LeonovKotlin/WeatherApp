@@ -9,7 +9,8 @@ import com.example.weatherapp.db.entities.current.Main
 
 @Database(
         entities = [Main::class, Coord::class],
-        version = 1, exportSchema = false
+        version = 1
+//    , exportSchema = false
 )
 abstract class ForecastDatabase : RoomDatabase() {
 abstract fun currentWeatherDao() : CurrentWeatherDao
