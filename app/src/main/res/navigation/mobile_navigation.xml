@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/mTodayFragment"
         android:name="com.example.weatherapp.ui.Today.TodayFragment"
-        android:label="today_fragment"
         tools:layout="@layout/today_fragment" />
     <fragment
         android:id="@+id/mForecastFragment"

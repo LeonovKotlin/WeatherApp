@@ -31,15 +31,16 @@
                 android:text="@string/tv_status"
                 android:textSize="18sp">
             </TextView>
+
             <TextView
                 android:id="@+id/tv_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="85sp"
-                android:fontFamily="sans-serif-thin"
                 android:layout_gravity="center"
-                android:text="@string/tv_temp">
-            </TextView>
+                android:fontFamily="sans-serif-thin"
+                android:text="@string/tv_temp"
+                android:textColor="#FFFFFF"
+                android:textSize="85sp"></TextView>
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -75,111 +76,12 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:weightSum="3">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#3CF1EBF1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/material_today"
-                        android:contentDescription="@string/todo">
-                    </ImageView>
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-                    </Space>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tv_sunrise"
-                        android:textSize="12sp">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/tv_sunrise"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tv_sunrise_am"
-                        android:textSize="14sp"></TextView>
-                </LinearLayout>
 
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
                 </Space>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#3CF1EBF1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/material_today"
-                        android:contentDescription="@string/todo">
-                    </ImageView>
-
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-                    </Space>
-
-                    <TextView
-                        android:id="@+id/tv_sunset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tv_sunset_am"
-                        android:textSize="14sp">
-                    </TextView>
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content">
-                </Space>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#3CF1EBF1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/material_today"
-                        android:contentDescription="@string/todo"></ImageView>
-
-                    <Space
-                        android:layout_width="wrap_content"
-                        android:layout_height="5dp">
-
-                    </Space>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tv_wind"
-                        android:textSize="12sp"></TextView>
-
-                    <TextView
-                        android:id="@+id/tv_wind"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tv_wind_am"
-                        android:textSize="14sp"></TextView>
-                </LinearLayout>
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
@@ -277,25 +179,25 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="@drawable/material_today"
-                        android:contentDescription="@string/todo">
-                    </ImageView>
+                        android:contentDescription="@string/todo"></ImageView>
+
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="5dp">
 
                     </Space>
                     <TextView
-                        android:textSize="12sp"
-                        android:text="@string/tv_info"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_wind"
+                        android:textSize="12sp"></TextView>
+
                     <TextView
-                        android:id="@+id/tv_info"
-                        android:textSize="14sp"
+                        android:id="@+id/tv_wind"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                    </TextView>
+                        android:layout_height="wrap_content"
+                        android:text="@string/tv_wind_am"
+                        android:textSize="14sp"></TextView>
                 </LinearLayout>
                 <Space
                     android:layout_width="10dp"

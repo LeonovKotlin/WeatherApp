@@ -90,11 +90,11 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         binding.tvTempMin.text = "$tempMin$unit"
         }
     private fun updateHudimity(hudimity: Int) {
-        tv_humidity.text = hudimity.toString()
+        binding.tvHumidity.text = hudimity.toString()
     }
     private fun updatePressure(pressure: Int) {
         val unit = chooseLocUnit("mm", "in")
-        tv_pressure.text = "Pressure: $pressure $unit"
+        binding.tvPressure.text = "$pressure $unit"
     }
     }
 
