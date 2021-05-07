@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceCategory>
+    android:title="Location"
+    <SwitchPreference
+        android:key="USE_LOCATION"
+        android:title="Input location in the phone"
+        android:summary="info"
+        android:defaultValue="true"
+        android:disableDependentsState="true"/>
+    <EditTextPreference
+        android:key="INPUT_LOCATION"
+        android:title="Location"
+        android:summary="info"
+        android:defaultValue="Gomel"
+        android:dependency="USE_LOCATION"/>
+</PreferenceCategory>
+</PreferenceScreen>

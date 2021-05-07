@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherapp.R
 import com.example.weatherapp.databinding.TodayFragmentBinding
 import com.example.weatherapp.ui.base.FragmentScoped
 import kotlinx.android.synthetic.main.today_fragment.*
@@ -22,8 +21,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     override val kodein by closestKodein()
     private val viewModelFactory: TodayViewModelFactory by instance()
     lateinit var binding: TodayFragmentBinding
-
-
     private lateinit var viewModel: TodayViewModel
 
     override fun onCreateView(
@@ -33,7 +30,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         binding = TodayFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,7 +46,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
 //        }
 //        getHistoricalWeather()
     }
-
     private fun bindUI() = launch {
         val todayWeather = viewModel.weather.await()
         val weatherLocation = viewModel.weatherLocation.await()
@@ -73,7 +68,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
 //         .into(icon_weather)
         })
     }
-
     private fun chooseLocUnit(metric: String, imperial: String): String {
         return if (viewModel.isMetric) metric else imperial
     }
@@ -102,7 +96,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val unit = chooseLocUnit("mm", "in")
         tv_pressure.text = "Pressure: $pressure $unit"
     }
-
     }
 
 //observ Activ

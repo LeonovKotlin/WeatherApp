@@ -4,9 +4,12 @@
     android:id="@+id/mTodayFragment"
     android:title="Today"
     android:icon="@drawable/today"/>
-
 <item
     android:id="@+id/mForecastFragment"
     android:title="Forecast"
     android:icon="@drawable/forecast"/>
+<item
+    android:id="@+id/mOptions"
+    android:title="Options"
+    android:icon="@drawable/material_options"/>
 </menu>

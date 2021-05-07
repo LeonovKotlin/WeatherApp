@@ -7,8 +7,6 @@ import com.google.gson.annotations.SerializedName
 data class WeatherCurrentResponse(
     @SerializedName("base")
     val base: String,
-//    @SerializedName("main")
-//    val weatherCurrentEntity: WeatherCurrentEntity,
 //    @SerializedName("clouds")
     val clouds: Clouds,
 //        @SerializedName("cod")
@@ -23,7 +21,7 @@ data class WeatherCurrentResponse(
     val main: Main,
 //        @SerializedName("name")
     val name: String,
-//        @SerializedName("sys")
+        @SerializedName("sys")
     val sys: Sys,
 //        @SerializedName("timezone")
     val timezone: Int,

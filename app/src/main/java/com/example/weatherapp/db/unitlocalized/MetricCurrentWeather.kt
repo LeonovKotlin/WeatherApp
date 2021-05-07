@@ -13,7 +13,8 @@ class MetricCurrentWeather(
         @ColumnInfo(name = "tempMax")
         override val tempMax: Double,
         @ColumnInfo(name = "tempMin")
-        override val tempMin: Double
+        override val tempMin: Double,
+
 
 
 
