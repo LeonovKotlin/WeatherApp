@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import android.app.Application
+import android.content.Context
 import com.example.weatherapp.db.ForecastDatabase
 import com.example.weatherapp.network.*
 import com.example.weatherapp.network.provider.LocationPrivider
@@ -8,6 +9,7 @@ import com.example.weatherapp.network.provider.LocationPrividerImpl
 import com.example.weatherapp.repository.ForecastRepository
 import com.example.weatherapp.repository.ForecastRepositoryImpl
 import com.example.weatherapp.ui.Today.TodayViewModelFactory
+import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -27,7 +29,8 @@ class ForecastApplication : Application(), KodeinAware {
         bind<ConnectInterceptor>() with singleton { ConnectInterceptorImpl(instance()) }
         bind() from singleton { APIService(instance()) }
         bind<WeatherNetDataSource>() with singleton {WeatherNetDataSourceImpl(instance())}
-        bind<LocationPrivider>() with singleton { LocationPrividerImpl()}
+        bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
+        bind<LocationPrivider>() with singleton { LocationPrividerImpl(instance(),instance())}
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(),instance(),instance(),instance()) }
         bind() from provider {TodayViewModelFactory(instance())  }
     }

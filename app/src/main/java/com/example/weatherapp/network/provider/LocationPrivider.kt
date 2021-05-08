@@ -5,6 +5,6 @@ import com.example.weatherapp.db.entities.current.WeatherLocation
 import com.example.weatherapp.db.unitlocalized.location.CurrentWeatherLocation
 
 interface LocationPrivider {
-    suspend fun locationChanged(lastWeatherLocation: WeatherLocation): Boolean
+    suspend fun haslocationChanged(lastWeatherLocation: WeatherLocation): Boolean
     suspend fun getLocationStr():String
 }

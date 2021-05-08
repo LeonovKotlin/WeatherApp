@@ -3,16 +3,16 @@
 <PreferenceCategory>
     android:title="Location"
     <SwitchPreference
-        android:key="USE_LOCATION"
+        android:key="USE_DEVICE_LOCATION"
         android:title="Input location in the phone"
         android:summary="info"
         android:defaultValue="true"
         android:disableDependentsState="true"/>
     <EditTextPreference
-        android:key="INPUT_LOCATION"
+        android:key="CUSTOM_LOCATION"
         android:title="Location"
         android:summary="info"
         android:defaultValue="Gomel"
-        android:dependency="USE_LOCATION"/>
+        android:dependency="USE_DEVICE_LOCATION"/>
 </PreferenceCategory>
 </PreferenceScreen>

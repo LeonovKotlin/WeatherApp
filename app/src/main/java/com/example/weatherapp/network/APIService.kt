@@ -1,6 +1,7 @@
 package com.example.weatherapp.network
 
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -15,7 +16,7 @@ interface APIService {
 suspend fun getLastWeekWeather(
         @Query("q") location: String = "Gomel"
 
-    ): Response<CurrentWeatherResponse>
+    ): Deferred<CurrentWeatherResponse>
 //    Deferred<WeatherHistory>
 
     companion object  {
