@@ -14,9 +14,10 @@ class MetricCurrentWeather(
         override val tempMax: Double,
         @ColumnInfo(name = "tempMin")
         override val tempMin: Double,
-
-
-
+        @ColumnInfo(name = "speed")
+        override val speed: Double,
+        @ColumnInfo(name = "name")
+        override var name: String
 
 ) : UnitSpeceficCurrentWeather
 

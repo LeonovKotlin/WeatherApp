@@ -1,10 +1,11 @@
 package com.example.weatherapp.network.provider
 
-import com.example.weatherapp.db.entities.current.Coord
-import com.example.weatherapp.db.entities.current.Sys
+import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.current.WeatherLocation
+import com.example.weatherapp.db.unitlocalized.location.CurrentWeatherLocation
 
 class LocationPrividerImpl : LocationPrivider {
-    override suspend fun locationChanged(lastWeatherLocation: Coord): Boolean {
+    override suspend fun locationChanged(lastWeatherLocation: WeatherLocation): Boolean {
         return true
     }
 

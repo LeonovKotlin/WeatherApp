@@ -1,5 +1,6 @@
 package com.example.weatherapp.network
 
+import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Response
@@ -14,7 +15,7 @@ interface APIService {
 suspend fun getLastWeekWeather(
         @Query("q") location: String = "Gomel"
 
-    ): Response<WeatherCurrentResponse>
+    ): Response<CurrentWeatherResponse>
 //    Deferred<WeatherHistory>
 
     companion object  {

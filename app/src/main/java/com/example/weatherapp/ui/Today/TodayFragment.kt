@@ -15,8 +15,6 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
-//const val TAG = "MainActivity"
-
 class TodayFragment : FragmentScoped(), KodeinAware {
     override val kodein by closestKodein()
     private val viewModelFactory: TodayViewModelFactory by instance()
@@ -49,21 +47,21 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun bindUI() = launch {
         val todayWeather = viewModel.weather.await()
         val weatherLocation = viewModel.weatherLocation.await()
-        weatherLocation.observe(viewLifecycleOwner, Observer { coord ->
-            if (coord == null) return@Observer              /////
-           updateLocation(coord.lat.toString())            /////API
+        weatherLocation.observe(viewLifecycleOwner, Observer { CurrentWeatherResponse->
+            if (CurrentWeatherResponse == null) return@Observer              /////
+//           updateLocation(CurrentWeatherResponse.name.toString())            /////API
         })
         //name coord
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
-//            tv_all.text = it.toString()
- //           group_load.visibility = View.GONE
             updateDate()
             updateTemp(it.temp)
             updatePressure(it.pressure)
             updateHudimity(it.humidity)
             updateTempMax(it.tempMax)
             updateTempMin(it.tempMin)
+            updateWind(it.speed)
+            updateCity(it.name)
 //          Glide.with(this@TodayFragment).load("${it.icon}")
 //         .into(icon_weather)
         })
@@ -71,9 +69,12 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun chooseLocUnit(metric: String, imperial: String): String {
         return if (viewModel.isMetric) metric else imperial
     }
-    private fun updateLocation(location: String) {
-        (activity as? AppCompatActivity)?.supportActionBar?.title = location
+    private fun updateCity(name: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = name
     }
+//    private fun updateLocation(location: String) {
+//        (activity as? AppCompatActivity)?.supportActionBar?.title = location
+//    }
     private fun updateDate() {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
@@ -96,8 +97,19 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val unit = chooseLocUnit("mm", "in")
         binding.tvPressure.text = "$pressure $unit"
     }
+    private fun updateWind(speed: Double) {
+        val unit = chooseLocUnit("C", "F")
+        binding.tvWind.text = "$speed$unit"
     }
 
+
+    }
+
+
+
+//temp
+//            tv_all.text = it.toString()
+//           group_load.visibility = View.GONE
 //observ Activ
 //    private fun getHistoricalWeather() {
 //        lifecycleScope.launchWhenCreated {

@@ -1,10 +1,7 @@
 package com.example.weatherapp.db.entities.current
 
 
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 const val CURRENT_WEATHER_ID = 0
@@ -34,7 +31,8 @@ data class CurrentWeatherResponse(
 
         @Embedded
         @field:SerializedName("coord")
-        var coord: Coord? = null,
+        var weatherLocation: WeatherLocation? = null,
+
         @Ignore
         @field:SerializedName("weather")
         var weather: List<WeatherItem?>? = null,
@@ -45,6 +43,10 @@ data class CurrentWeatherResponse(
         @Ignore
         @field:SerializedName("cod")
         var cod: Int? = null,
+
+//    @field:SerializedName("id")
+//    var id: Int? = null,
+
         @Ignore
         @field:SerializedName("base")
         var base: String? = null,
@@ -54,7 +56,7 @@ data class CurrentWeatherResponse(
         var wind: Wind? = null,
 
         ) {
-    constructor() : this(0, 0, null, null, null, 0, null, null, "", 0, null, null)
+        constructor() : this(0, 0, null, null, null, 0, null, null, "", 0, null, null)
 }
 data class Sys(
 
@@ -74,6 +76,7 @@ data class Sys(
         @field:SerializedName("type")
         var type: Int? = null
 )
+
 data class Main(
 
         @field:SerializedName("temp")
@@ -94,6 +97,7 @@ data class Main(
         @field:SerializedName("temp_max")
         var tempMax: Double? = null
 )
+
 data class WeatherItem(
 
         @field:SerializedName("icon")
@@ -108,6 +112,7 @@ data class WeatherItem(
         @field:SerializedName("id")
         var id: Int? = null
 )
+
 data class Wind(
 
         @field:SerializedName("deg")
@@ -122,15 +127,6 @@ data class Clouds(
         @field:SerializedName("all")
         var all: Int? = null
 )
-
-data class Coord(
-
-        @field:SerializedName("lon")
-        var lon: Double? = null,
-
-        @field:SerializedName("lat")
-        var lat: Double? = null
-)
 {
     @PrimaryKey(autoGenerate = false)
     var id:Int = CURRENT_WEATHER_ID
@@ -139,19 +135,3 @@ data class Coord(
 
 
 
-
-//    @Embedded(prefix="main_")
-//    val main: Main,
-//    @Embedded(prefix="sys_")
-//    val sys: Sys,
-//    @SerializedName("visibility")
-//    val visibility: Int,
-//    @Embedded(prefix="wind_")
-//    val wind: Wind
-//)
-//{
-//    @PrimaryKey(autoGenerate = true)
-//    var id:Int = CURRENT_WEATHER_ID
-//}
-//    @SerializedName("weather")
-//    val weather: List<Weather>,

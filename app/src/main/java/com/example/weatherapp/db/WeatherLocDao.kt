@@ -5,15 +5,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.weatherapp.db.entities.current.CURRENT_WEATHER_ID
-import com.example.weatherapp.db.entities.current.Coord
+import com.example.weatherapp.db.entities.current.*
 
 @Dao
 interface WeatherLocDao {
      @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun upsert(weatherLocation: Coord)
+     fun upsert(weatherLocation: WeatherLocation)
 
-     @Query("select * from weather_location where id=$CURRENT_WEATHER_ID")
-     fun getLocation() : LiveData<Coord>
+     @Query("select * from location_weather where id=$CURRENT_WEATHER_ID2")
+     fun getLocation() : LiveData<WeatherLocation>
 
 }

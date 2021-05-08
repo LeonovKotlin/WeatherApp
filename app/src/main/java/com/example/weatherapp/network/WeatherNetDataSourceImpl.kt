@@ -3,13 +3,14 @@ package com.example.weatherapp.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
 import com.example.weatherapp.network.internal.NoConnectivityExeption
 
 class WeatherNetDataSourceImpl(
 private val apiService: APIService
 ) : WeatherNetDataSource {
-    private val _downloadedCurrentWeather = MutableLiveData<WeatherCurrentResponse>()
-    override val downloadedCurrentWeather: LiveData<WeatherCurrentResponse>
+    private val _downloadedCurrentWeather = MutableLiveData<CurrentWeatherResponse>()
+    override val downloadedCurrentWeather: LiveData<CurrentWeatherResponse>
         get() = _downloadedCurrentWeather
 
     override suspend fun fetchCurrentWeather(location: String) {

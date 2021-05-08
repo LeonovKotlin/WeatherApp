@@ -3,10 +3,9 @@ package com.example.weatherapp.repository
 import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
-import com.example.weatherapp.db.entities.current.Coord
-import com.example.weatherapp.db.entities.current.Sys
+import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.current.WeatherLocation
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
-import com.example.weatherapp.network.WeatherCurrentResponse
 import com.example.weatherapp.network.WeatherNetDataSource
 import com.example.weatherapp.network.provider.LocationPrivider
 import kotlinx.coroutines.Dispatchers
@@ -35,15 +34,15 @@ class ForecastRepositoryImpl(
             else currentWeatherDao.getWeatherImperial()
         }
     }
-    override suspend fun getWeatherLocation(): LiveData<Coord> {
+    override suspend fun getWeatherLocation(): LiveData<WeatherLocation> {
         return withContext(Dispatchers.IO) {
             return@withContext weatherLocDao.getLocation()
         }
     }
-    private fun persistFechedCurrentWeather(fetchedWeather: WeatherCurrentResponse) {
+    private fun persistFechedCurrentWeather(fetchedWeather: CurrentWeatherResponse) {
         GlobalScope.launch(Dispatchers.IO) {
-            currentWeatherDao.upsert(fetchedWeather.main)
-            weatherLocDao.upsert(fetchedWeather.coord)
+            currentWeatherDao.upsert(fetchedWeather)
+            weatherLocDao.upsert(fetchedWeather.weatherLocation!!)
         }
     }
     private suspend fun initWeatherData() {
