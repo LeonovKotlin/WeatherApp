@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class FutureWeatherResponse(
     @SerializedName("city")
-    val city: City,
+    val location: WeatherLocation,
     @SerializedName("cnt")
     val cnt: Int,
     @SerializedName("cod")

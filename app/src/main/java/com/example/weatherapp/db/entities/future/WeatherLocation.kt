@@ -1,15 +1,19 @@
 package com.example.weatherapp.db.entities.future
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class City(
+const val WEATHER_LOCATION_ID = 0
+@Entity(tableName = "weather_location")
+data class WeatherLocation(
     @SerializedName("coord")
     val coord: Coord,
     @SerializedName("country")
     val country: String,
-    @SerializedName("id")
-    val id: Int,
+//    @SerializedName("id")
+//    val id: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("population")
@@ -21,3 +25,7 @@ data class City(
     @SerializedName("timezone")
     val timezone: Int
 )
+{
+    @PrimaryKey(autoGenerate = false)
+    var id: Int = 0
+}

@@ -56,7 +56,6 @@ data class CurrentWeatherResponse(
         var wind: Wind? = null,
 
         ) {
-
         val zonedDateTime: org.threeten.bp.ZonedDateTime
                 get() {
                         val instant = org.threeten.bp.Instant.ofEpochSecond(dt!!)
