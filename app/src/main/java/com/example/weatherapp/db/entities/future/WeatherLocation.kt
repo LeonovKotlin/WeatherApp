@@ -16,8 +16,6 @@ data class WeatherLocation(
 //    val id: Int,
     @SerializedName("name")
     val name: String,
-    @SerializedName("population")
-    val population: Int,
     @SerializedName("sunrise")
     val sunrise: Int,
     @SerializedName("sunset")

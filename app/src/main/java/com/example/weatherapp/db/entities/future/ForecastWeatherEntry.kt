@@ -1,23 +1,25 @@
 package com.example.weatherapp.db.entities.future
 
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class DailyForecast(
-    @SerializedName("clouds")
-    val clouds: Clouds,
+@Entity(tableName = "future_weather", indices = [Index(value = ["dtTxt"], unique = true)])
+data class ForecastWeatherEntry(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int? = null,
     @SerializedName("dt")
     val dt: Int,
     @SerializedName("dt_txt")
     val dtTxt: String,
-    @SerializedName("main")
+    @Embedded
+//    @SerializedName("main")
     val main: Main,
     @SerializedName("pop")
     val pop: Double,
-    @SerializedName("rain")
-    val rain: Rain,
-    @SerializedName("sys")
-    val sys: Sys,
     @SerializedName("visibility")
     val visibility: Int,
     @SerializedName("weather")
