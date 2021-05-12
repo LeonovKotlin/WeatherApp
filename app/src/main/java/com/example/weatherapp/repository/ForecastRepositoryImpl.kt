@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.future.FutureWeatherResponse
+import com.example.weatherapp.db.entities.future.WeatherLocation
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
 import com.example.weatherapp.network.WeatherNetDataSource
 import com.example.weatherapp.network.provider.LocationPrivider
@@ -12,6 +14,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.datetime.*
+import org.threeten.bp.LocalDate
 import org.threeten.bp.ZonedDateTime
 import java.util.*
 
@@ -33,7 +36,7 @@ class ForecastRepositoryImpl(
             else currentWeatherDao.getWeatherImperial()
         }
     }
-    override suspend fun getWeatherLocation(): LiveData<CurrentWeatherResponse> {
+    override suspend fun getWeatherLocation(): LiveData<WeatherLocation> {
         return withContext(Dispatchers.IO) {
             return@withContext weatherLocDao.getLocation()
         }
@@ -41,9 +44,16 @@ class ForecastRepositoryImpl(
     private fun persistFechedCurrentWeather(fetchedWeather: CurrentWeatherResponse) {
         GlobalScope.launch(Dispatchers.IO) {
             currentWeatherDao.upsert(fetchedWeather.currentWeather!!)
-            weatherLocDao.upsert(fetchedWeather)//location
         }
     }
+    private fun persistFechedFutureWeather(fetchedWeather: FutureWeatherResponse) {
+        weatherLocDao.upsert(fetchedWeather.location)//location
+        fun deleteOldForecastData() {
+            val today = LocalDate.now()
+        }
+    }
+
+
     private suspend fun initWeatherData() {
         val lastWeatherLocation = weatherLocDao.getLocation().value
             if(lastWeatherLocation == null

@@ -1,6 +1,7 @@
 package com.example.weatherapp.network
 
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.future.FutureWeatherResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -19,6 +20,13 @@ suspend fun getLastWeekWeather(
     ): Response<CurrentWeatherResponse>
 //    Deferred<WeatherHistory>
 
+//https://api.openweathermap.org/data/2.5/forecast?q=Gomel&appid=e7fd5f2e6627b47267f04cba5d03cb5a
+@GET("forecast")
+suspend fun getFutureWeather(
+        @Query("q") location: String = "Gomel"
+
+): Response<FutureWeatherResponse>
+
     companion object  {
         operator fun invoke(
                 connectInterceptor: ConnectInterceptor
@@ -29,7 +37,8 @@ suspend fun getLastWeekWeather(
                     .url
                     .newBuilder()
                     .addQueryParameter("appid",Constants.openWeatherApiKey)
-                    .build()
+                        .addQueryParameter("units", "metric")
+                        .build()
                 val reqest = chain.request()
                     .newBuilder()
                     .url(url)

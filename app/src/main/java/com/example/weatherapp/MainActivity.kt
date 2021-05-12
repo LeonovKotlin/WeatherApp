@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         return ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
-
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
@@ -80,6 +79,5 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         }
     }
 }
-//temp
 
 

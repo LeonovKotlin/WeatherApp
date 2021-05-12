@@ -49,7 +49,7 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val weatherLocation = viewModel.weatherLocation.await()
         weatherLocation.observe(viewLifecycleOwner, Observer { location->
             if (location == null) return@Observer              /////
-          updateLocation(location.name.toString())            /////API
+          updateLocation(location.name)            /////API
         })
         //name coord
         todayWeather.observe(viewLifecycleOwner, Observer {

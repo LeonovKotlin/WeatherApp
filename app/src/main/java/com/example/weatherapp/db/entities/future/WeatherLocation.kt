@@ -27,5 +27,5 @@ data class WeatherLocation(
 )
 {
     @PrimaryKey(autoGenerate = false)
-    var id: Int = 0
+    var id: Int = WEATHER_LOCATION_ID
 }

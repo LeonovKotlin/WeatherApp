@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.content.ContextCompat
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.future.WeatherLocation
 import com.example.weatherapp.internal.asDeferred
 import com.example.weatherapp.network.internal.LocationPermissionNotException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -19,7 +19,7 @@ class LocationPrividerImpl(
         context: Context) : PreferenceProvider(context), LocationPrivider {
     private val appContext = context.applicationContext
 
-    override suspend fun haslocationChanged(lastWeatherLocation: CurrentWeatherResponse): Boolean { ///temp
+    override suspend fun haslocationChanged(lastWeatherLocation: WeatherLocation): Boolean { ///temp
         val deviceLocationChanged = try {
             hasDevicelocationChanged(lastWeatherLocation)
         } catch (e: LocationPermissionNotException) {
@@ -41,17 +41,17 @@ class LocationPrividerImpl(
           return "${getCustomLocationName()}"
   }
 
-    private suspend fun hasDevicelocationChanged(lastWeatherLocation: CurrentWeatherResponse) : Boolean {
+    private suspend fun hasDevicelocationChanged(lastWeatherLocation: WeatherLocation) : Boolean {
         if (!isUsingDeviseLocation())
             return false
         val deviceLocation = getLastDeviceLocation().await()
                 ?: return false
 //
         val comp = 0.03 //comparisonThreshold
-        return  Math.abs(deviceLocation.latitude - lastWeatherLocation.coord!!.lat) > comp &&
-                Math.abs(deviceLocation.longitude- lastWeatherLocation.coord!!.lon) > comp
+        return  Math.abs(deviceLocation.latitude - lastWeatherLocation.coord.lat) > comp &&
+                Math.abs(deviceLocation.longitude- lastWeatherLocation.coord.lon) > comp
     }
-    private fun hascustomLocChanged(lastWeatherLocation: CurrentWeatherResponse) : Boolean {
+    private fun hascustomLocChanged(lastWeatherLocation: WeatherLocation) : Boolean {
         val customLocationName = getCustomLocationName()
         return customLocationName != lastWeatherLocation.name  //loc.name(lat,lon)
     }
