@@ -47,9 +47,9 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun bindUI() = launch {
         val todayWeather = viewModel.weather.await()
         val weatherLocation = viewModel.weatherLocation.await()
-        weatherLocation.observe(viewLifecycleOwner, Observer { CurrentWeatherResponse->
-            if (CurrentWeatherResponse == null) return@Observer              /////
-//           updateLocation(CurrentWeatherResponse.name.toString())            /////API
+        weatherLocation.observe(viewLifecycleOwner, Observer { location->
+            if (location == null) return@Observer              /////
+          updateLocation(location.name.toString())            /////API
         })
         //name coord
         todayWeather.observe(viewLifecycleOwner, Observer {
@@ -60,8 +60,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
             updateHudimity(it.humidity)
             updateTempMax(it.tempMax)
             updateTempMin(it.tempMin)
-            updateWind(it.speed)
-            updateCity(it.name)
 //          Glide.with(this@TodayFragment).load("${it.icon}")
 //         .into(icon_weather)
         })
@@ -69,12 +67,9 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun chooseLocUnit(metric: String, imperial: String): String {
         return if (viewModel.isMetric) metric else imperial
     }
-    private fun updateCity(name: String) {
-        (activity as? AppCompatActivity)?.supportActionBar?.title = name
-    }
-//    private fun updateLocation(location: String) {
-//        (activity as? AppCompatActivity)?.supportActionBar?.title = location
-//    }
+    private fun updateLocation(location: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = location
+   }
     private fun updateDate() {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
@@ -97,12 +92,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val unit = chooseLocUnit("mm", "in")
         binding.tvPressure.text = "$pressure $unit"
     }
-    private fun updateWind(speed: Double) {
-        val unit = chooseLocUnit("C", "F")
-        binding.tvWind.text = "$speed$unit"
-    }
-
-
     }
 
 

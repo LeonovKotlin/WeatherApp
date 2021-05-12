@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.weatherapp.db.entities.current.CurrentWeather
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-import com.example.weatherapp.db.entities.current.WeatherLocation
 
 @Database(
-        entities = [CurrentWeatherResponse::class, WeatherLocation::class],
+        entities = [CurrentWeather::class, CurrentWeatherResponse::class],
         version = 1,
      exportSchema = false
 )

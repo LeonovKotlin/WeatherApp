@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-import com.example.weatherapp.db.entities.current.WeatherLocation
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
 import com.example.weatherapp.network.WeatherNetDataSource
 import com.example.weatherapp.network.provider.LocationPrivider
@@ -34,29 +33,33 @@ class ForecastRepositoryImpl(
             else currentWeatherDao.getWeatherImperial()
         }
     }
-    override suspend fun getWeatherLocation(): LiveData<WeatherLocation> {
+    override suspend fun getWeatherLocation(): LiveData<CurrentWeatherResponse> {
         return withContext(Dispatchers.IO) {
             return@withContext weatherLocDao.getLocation()
         }
     }
     private fun persistFechedCurrentWeather(fetchedWeather: CurrentWeatherResponse) {
         GlobalScope.launch(Dispatchers.IO) {
-            currentWeatherDao.upsert(fetchedWeather)
-            weatherLocDao.upsert(fetchedWeather.weatherLocation!!)
+            currentWeatherDao.upsert(fetchedWeather.currentWeather!!)
+            weatherLocDao.upsert(fetchedWeather)//location
         }
     }
     private suspend fun initWeatherData() {
         val lastWeatherLocation = weatherLocDao.getLocation().value
-            if(lastWeatherLocation == null || locationProvider.locationChanged(lastWeatherLocation)) {
+            if(lastWeatherLocation == null
+                    || locationProvider.haslocationChanged(lastWeatherLocation)) {
                 fetchCurrentWeather()
                 return
             }
              if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
              fetchCurrentWeather()
+
+//                     if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
+//                         fetchCurrentWeather()
     }
     //
     private suspend fun fetchCurrentWeather() {
-        weatherNetDataSource.fetchCurrentWeather(locationProvider.getLocationStr())
+        weatherNetDataSource.fetchCurrentWeather(locationProvider.getLocationStr()) ////
     }
 private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
     val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)

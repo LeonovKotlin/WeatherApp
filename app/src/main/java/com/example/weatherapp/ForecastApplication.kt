@@ -2,6 +2,7 @@ package com.example.weatherapp
 
 import android.app.Application
 import android.content.Context
+import android.preference.PreferenceManager
 import com.example.weatherapp.db.ForecastDatabase
 import com.example.weatherapp.network.*
 import com.example.weatherapp.network.provider.LocationPrivider
@@ -37,5 +38,6 @@ class ForecastApplication : Application(), KodeinAware {
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
+        PreferenceManager.setDefaultValues(this, R.xml.preference, false)
     }
   }

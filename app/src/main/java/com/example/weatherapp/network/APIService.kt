@@ -16,7 +16,7 @@ interface APIService {
 suspend fun getLastWeekWeather(
         @Query("q") location: String = "Gomel"
 
-    ): Deferred<CurrentWeatherResponse>
+    ): Response<CurrentWeatherResponse>
 //    Deferred<WeatherHistory>
 
     companion object  {

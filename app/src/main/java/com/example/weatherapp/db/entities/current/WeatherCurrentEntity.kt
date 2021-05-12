@@ -1,22 +1,22 @@
 package com.example.weatherapp.db.entities.current
 
-
 import androidx.room.*
 import com.google.gson.annotations.SerializedName
 
 const val CURRENT_WEATHER_ID = 0
-@Entity(tableName="current_weather")
+@Entity(tableName="location_weather")
 data class CurrentWeatherResponse(
+
         @PrimaryKey
         @field:SerializedName("visibility")
         var visibility: Int? = null,
 
-        @field:SerializedName("timezone")
+        @SerializedName("timezone")
         var timezone: Int? = null,
 
         @Embedded
-        @field:SerializedName("main")
-        var main: Main? = null,
+        @SerializedName("main")
+        var currentWeather: CurrentWeather? = null,
 
         @Ignore
         @field:SerializedName("clouds")
@@ -26,19 +26,19 @@ data class CurrentWeatherResponse(
         @field:SerializedName("sys")
         var sys: Sys? = null,
 
-        @field:SerializedName("dt")
-        var dt: Int? = null,
+        @SerializedName("dt")
+        var dt: Long? = null,
 
         @Embedded
         @field:SerializedName("coord")
-        var weatherLocation: WeatherLocation? = null,
+        var coord: Coord? = null,
 
         @Ignore
         @field:SerializedName("weather")
         var weather: List<WeatherItem?>? = null,
 
         @field:SerializedName("name")
-        var name: String? = null,
+        var name: String,
 
         @Ignore
         @field:SerializedName("cod")
@@ -56,8 +56,16 @@ data class CurrentWeatherResponse(
         var wind: Wind? = null,
 
         ) {
+
+        val zonedDateTime: org.threeten.bp.ZonedDateTime
+                get() {
+                        val instant = org.threeten.bp.Instant.ofEpochSecond(dt!!)
+                        val zoneid = org.threeten.bp.ZoneId.of(timezone.toString())
+                        return org.threeten.bp.ZonedDateTime.ofInstant(instant, zoneid)
+                }
         constructor() : this(0, 0, null, null, null, 0, null, null, "", 0, null, null)
 }
+
 data class Sys(
 
         @field:SerializedName("country")
@@ -77,26 +85,7 @@ data class Sys(
         var type: Int? = null
 )
 
-data class Main(
 
-        @field:SerializedName("temp")
-        var temp: Double? = null,
-
-        @field:SerializedName("temp_min")
-        var tempMin: Double? = null,
-
-        @field:SerializedName("humidity")
-        var humidity: Int? = null,
-
-        @field:SerializedName("pressure")
-        var pressure: Int? = null,
-
-        @field:SerializedName("feels_like")
-        var feelsLike: Double? = null,
-
-        @field:SerializedName("temp_max")
-        var tempMax: Double? = null
-)
 
 data class WeatherItem(
 
@@ -127,9 +116,11 @@ data class Clouds(
         @field:SerializedName("all")
         var all: Int? = null
 )
+
 {
     @PrimaryKey(autoGenerate = false)
     var id:Int = CURRENT_WEATHER_ID
+
 }
 
 

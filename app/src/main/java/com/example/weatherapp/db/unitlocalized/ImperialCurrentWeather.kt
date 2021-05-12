@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
 
 data class ImperialCurrentWeather(
-
         @ColumnInfo(name = "humidity")
         override val humidity: Int,
         @ColumnInfo(name = "pressure")
@@ -15,13 +14,6 @@ data class ImperialCurrentWeather(
         override val tempMax: Double,
         @ColumnInfo(name = "tempMin")
         override val tempMin: Double,
-        @ColumnInfo(name = "speed")
-        override val speed: Double,
-        @ColumnInfo(name = "name")
-        override var name: String
-
-
-
 ) : UnitSpeceficCurrentWeather
 
 //@ColumnInfo(name = "main_temp")

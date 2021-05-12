@@ -10,9 +10,9 @@ import com.example.weatherapp.db.entities.current.*
 @Dao
 interface WeatherLocDao {
      @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun upsert(weatherLocation: WeatherLocation)
+     fun upsert(weatherLocation: CurrentWeatherResponse)
 
-     @Query("select * from location_weather where id=$CURRENT_WEATHER_ID2")
-     fun getLocation() : LiveData<WeatherLocation>
+     @Query("select * from location_weather where id=$CURRENT_WEATHER_ID")
+     fun getLocation() : LiveData<CurrentWeatherResponse>
 
 }

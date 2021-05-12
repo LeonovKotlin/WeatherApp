@@ -11,7 +11,7 @@ private val apiService: APIService
 ) : WeatherNetDataSource {
     private val _downloadedCurrentWeather = MutableLiveData<CurrentWeatherResponse>()
     override val downloadedCurrentWeather: LiveData<CurrentWeatherResponse>
-        get() = _downloadedCurrentWeather
+    get() = _downloadedCurrentWeather
 
     override suspend fun fetchCurrentWeather(location: String) {
         try {

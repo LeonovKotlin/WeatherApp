@@ -6,14 +6,10 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-import com.example.weatherapp.db.entities.current.WeatherLocation
-import com.example.weatherapp.db.unitlocalized.location.CurrentWeatherLocation
 import com.example.weatherapp.internal.asDeferred
 import com.example.weatherapp.network.internal.LocationPermissionNotException
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.Deferred
-import retrofit2.Response
-import java.util.jar.Manifest
 
 const val USE_DEVICE_LOCATION = "USE_DEVICE_LOCATION"
 const val CUSTOM_LOCATION = "CUSTOM_LOCATION"
@@ -23,7 +19,7 @@ class LocationPrividerImpl(
         context: Context) : PreferenceProvider(context), LocationPrivider {
     private val appContext = context.applicationContext
 
-    override suspend fun haslocationChanged(lastWeatherLocation: WeatherLocation): Boolean {
+    override suspend fun haslocationChanged(lastWeatherLocation: CurrentWeatherResponse): Boolean { ///temp
         val deviceLocationChanged = try {
             hasDevicelocationChanged(lastWeatherLocation)
         } catch (e: LocationPermissionNotException) {
@@ -31,12 +27,12 @@ class LocationPrividerImpl(
         }
         return deviceLocationChanged || hascustomLocChanged(lastWeatherLocation)
     }
-  override suspend fun getPreferredLocationString() :  String {
+  override suspend fun getLocationStr():  String {
       if (isUsingDeviseLocation()) {
           try {
               val deviceLocation = getLastDeviceLocation().await()
                       ?: return "${getCustomLocationName()}"
-              return "${deviceLocation.longitude},${deviceLocation.longitude}"
+              return "${deviceLocation.latitude},${deviceLocation.longitude}"
           } catch (e: LocationPermissionNotException) {
               return "${getCustomLocationName()}"
           }
@@ -45,30 +41,24 @@ class LocationPrividerImpl(
           return "${getCustomLocationName()}"
   }
 
-    private suspend fun hasDevicelocationChanged(lastWeatherLocation: WeatherLocation) : Boolean {
+    private suspend fun hasDevicelocationChanged(lastWeatherLocation: CurrentWeatherResponse) : Boolean {
         if (!isUsingDeviseLocation())
             return false
         val deviceLocation = getLastDeviceLocation().await()
                 ?: return false
-
-        val comp = 0.03
-        return  Math.abs(deviceLocation.latitude - lastWeatherLocation.lat) > comp &&
-                Math.abs(deviceLocation.longitude- lastWeatherLocation.lon) > comp
+//
+        val comp = 0.03 //comparisonThreshold
+        return  Math.abs(deviceLocation.latitude - lastWeatherLocation.coord!!.lat) > comp &&
+                Math.abs(deviceLocation.longitude- lastWeatherLocation.coord!!.lon) > comp
     }
-    private fun hascustomLocChanged(lastWeatherLocation: WeatherLocation) : Boolean {
+    private fun hascustomLocChanged(lastWeatherLocation: CurrentWeatherResponse) : Boolean {
         val customLocationName = getCustomLocationName()
-        return customLocationName != lastWeatherLocation.lat.toString()   //loc.name(lat,lon)
+        return customLocationName != lastWeatherLocation.name  //loc.name(lat,lon)
     }
-//    private fun hascustomLocChanged(lastWeatherLocation: WeatherLocation) : Boolean {
-//        val customLocationName = getCustomLocationName()
-//        return customLocationName != lastWeatherLocation   //loc.name(lat,lon)
-//    }
     private fun isUsingDeviseLocation() : Boolean {
         return preferences.getBoolean(USE_DEVICE_LOCATION, true)
     }
-//    private fun getCustomLocationName() : Boolean {
-//        return preferences.getBoolean(CUSTOM_LOCATION, true)
-//    }
+
 private fun getCustomLocationName() : String? {
         return preferences.getString(CUSTOM_LOCATION,null)
     }
