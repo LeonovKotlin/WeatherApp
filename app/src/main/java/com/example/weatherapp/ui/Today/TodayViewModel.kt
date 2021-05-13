@@ -5,19 +5,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.internal.Unit
 import com.example.weatherapp.internal.lazyDeferred
 import com.example.weatherapp.repository.ForecastRepository
+import com.example.weatherapp.ui.base.WeatherViewModel
 
 class TodayViewModel(
     private val forecastRepository: ForecastRepository
-) : ViewModel() {
+) : WeatherViewModel(forecastRepository) {
     private val unit = Unit.METRIC
 
-    val isMetric: Boolean
-    get() = unit==Unit.METRIC
+
 
     val weather by lazyDeferred {
         forecastRepository.getCurrentWeather(isMetric)}
-    val weatherLocation by lazyDeferred {
-        forecastRepository.getWeatherLocation()}
 }
 
 class  TodayViewModelFactory(

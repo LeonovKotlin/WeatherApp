@@ -52,8 +52,11 @@ class LocationPrividerImpl(
                 Math.abs(deviceLocation.longitude- lastWeatherLocation.coord.lon) > comp
     }
     private fun hascustomLocChanged(lastWeatherLocation: WeatherLocation) : Boolean {
-        val customLocationName = getCustomLocationName()
-        return customLocationName != lastWeatherLocation.name  //loc.name(lat,lon)
+        if (!isUsingDeviseLocation()) {
+            val customLocationName = getCustomLocationName()
+            return customLocationName != lastWeatherLocation.name  //loc.name(lat,lon)
+        }
+        return false
     }
     private fun isUsingDeviseLocation() : Boolean {
         return preferences.getBoolean(USE_DEVICE_LOCATION, true)
