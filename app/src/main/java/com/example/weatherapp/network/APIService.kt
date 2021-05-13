@@ -37,8 +37,8 @@ suspend fun getFutureWeather(
                     .url
                     .newBuilder()
                     .addQueryParameter("appid",Constants.openWeatherApiKey)
-                        .addQueryParameter("units", "metric")
-                        .build()
+                    .addQueryParameter("units", "metric")
+                    .build()
                 val reqest = chain.request()
                     .newBuilder()
                     .url(url)

@@ -15,7 +15,7 @@ data class WeatherLocation(
 //    @SerializedName("id")
 //    val id: Int,
     @SerializedName("name")
-    val name: String,
+    public val name: String,
     @SerializedName("sunrise")
     val sunrise: Int,
     @SerializedName("sunset")
@@ -24,6 +24,7 @@ data class WeatherLocation(
     val timezone: Int
 )
 {
+
     @PrimaryKey(autoGenerate = false)
     var id: Int = WEATHER_LOCATION_ID
 }

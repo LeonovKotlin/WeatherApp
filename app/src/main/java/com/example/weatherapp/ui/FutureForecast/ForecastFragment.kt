@@ -6,14 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.weatherapp.R
+import com.example.weatherapp.databinding.ForecastFragmentBinding
+import com.example.weatherapp.databinding.TodayFragmentBinding
+import com.example.weatherapp.ui.base.FragmentScoped
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
-class ForecastFragment : Fragment() {
-
-
-    override fun onCreateView(
+class ForecastFragment : FragmentScoped(), KodeinAware {
+    override val kodein by closestKodein()
+        private val viewModelFactory: FutureViewModelFactory by instance()
+        private lateinit var viewModel: ForecastViewModel
+        lateinit var binding: ForecastFragmentBinding
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.forecast_fragment, container, false)
-    }
+            binding = ForecastFragmentBinding.inflate(inflater, container, false)
+            return binding.root    }
 }
