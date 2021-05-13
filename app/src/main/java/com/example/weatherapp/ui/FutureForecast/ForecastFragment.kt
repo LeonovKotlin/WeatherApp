@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ForecastFragmentBinding
 import com.example.weatherapp.databinding.TodayFragmentBinding
@@ -19,10 +20,17 @@ class ForecastFragment : FragmentScoped(), KodeinAware {
         private val viewModelFactory: FutureViewModelFactory by instance()
         private lateinit var viewModel: ForecastViewModel
         lateinit var binding: ForecastFragmentBinding
+
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
             binding = ForecastFragmentBinding.inflate(inflater, container, false)
-            return binding.root    }
+            return binding.root
+        }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ForecastViewModel::class.java)
+    }
 }
