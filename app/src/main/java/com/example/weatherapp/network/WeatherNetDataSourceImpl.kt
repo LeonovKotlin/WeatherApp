@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.future.FutureWeatherResponse
 import com.example.weatherapp.network.internal.NoConnectivityExeption
 
 class WeatherNetDataSourceImpl(
@@ -18,6 +19,21 @@ private val apiService: APIService
             val fetchedCurrentWeather = apiService
                     .getLastWeekWeather(location)
                     _downloadedCurrentWeather.postValue(fetchedCurrentWeather.body())
+
+        }
+        catch (e: NoConnectivityExeption) {
+            Log.e("Connect", "No internet", e)
+        }
+    }
+    private val _downloadedFutureWeather = MutableLiveData<FutureWeatherResponse>()
+    override val downloadedFutureWeather: LiveData<FutureWeatherResponse>
+        get() = _downloadedFutureWeather
+
+    override suspend fun fetchFutureWeather(location: String) {
+        try {
+            val fetchedFutureWeather = apiService
+                    .getFutureWeather(location)
+            _downloadedFutureWeather.postValue(fetchedFutureWeather.body())
 
         }
         catch (e: NoConnectivityExeption) {

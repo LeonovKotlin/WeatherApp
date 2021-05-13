@@ -15,8 +15,7 @@ data class ForecastWeatherEntry(
     val dt: Int,
     @SerializedName("dt_txt")
     val dtTxt: String,
-    @Embedded
-//    @SerializedName("main")
+    @Embedded(prefix = "main_")
     val main: Main,
     @SerializedName("pop")
     val pop: Double,
