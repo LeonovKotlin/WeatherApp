@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ForecastFragmentBinding
 import com.example.weatherapp.databinding.TodayFragmentBinding
 import com.example.weatherapp.ui.base.FragmentScoped
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -33,4 +37,23 @@ class ForecastFragment : FragmentScoped(), KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory).get(ForecastViewModel::class.java)
     }
+    private fun bindUI() = launch(Dispatchers.Main) {
+        val futureWeatherEntry = viewModel.weatherEntries.await()
+        val weatherLocation = viewModel.weatherLocation.await()
+
+        weatherLocation.observe(this@ForecastFragment, Observer { location ->
+            if (location == null) return@Observer
+            updateLocation(location.name)
+        })
+        futureWeatherEntry.observe(this@ForecastFragment, Observer { weatherEntries ->
+            if(weatherEntries == null) return@Observer
+            binding.loading.visibility = View.GONE
+
+            updateDateToFiveDays()
+        })
+    }
+    private fun updateLocation(location: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = location
+    }
+
 }
