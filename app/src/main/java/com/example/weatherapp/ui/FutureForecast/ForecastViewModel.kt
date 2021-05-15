@@ -15,7 +15,7 @@ class ForecastViewModel(
         private val unit = Unit.METRIC
 
         val weatherEntries by lazyDeferred {
-            forecastRepository.getFutureWeatherList(LocalDate.now(), super.isMetric)
+            forecastRepository.getFutureWeatherList(isMetric)
     }
     }
 
@@ -24,6 +24,6 @@ class  FutureViewModelFactory(
 ) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return TodayViewModel(forecastRepository) as T
+        return ForecastViewModel(forecastRepository) as T
     }
 }

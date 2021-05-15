@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 import org.threeten.bp.LocalDate
 
 data class MetricFutureWeather(
-        @ColumnInfo(name = "dt_txt")
-        override val dt: LocalDate,
+        @ColumnInfo(name = "dtTxt")
+        override val dtTxt: String,
         @ColumnInfo(name = "main_temp")
         override val temp: Double,
         @ColumnInfo(name = "main_humidity")

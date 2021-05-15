@@ -28,7 +28,6 @@ class ForecastApplication : Application(), KodeinAware {
         bind() from singleton { ForecastDatabase(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao()}
         bind() from singleton { instance<ForecastDatabase>().futureWeatherDao()}
-
         bind() from singleton { instance<ForecastDatabase>().weatherLocDao()}
         bind<ConnectInterceptor>() with singleton { ConnectInterceptorImpl(instance()) }
         bind() from singleton { APIService(instance()) }

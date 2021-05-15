@@ -21,11 +21,10 @@ class FutureWeatherItem(
     override fun getLayout() = R.layout.item_future_weather
     private fun ViewHolder.updateDate() {
         val dtFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-        tvDate.text = weatherEntry.dt.format(dtFormatter)
+        tvDate.text = weatherEntry.dtTxt.format(dtFormatter)
 
     }
     private fun ViewHolder.updateTemp() {
         tvTemp.text = weatherEntry.temp.toString()
-
     }
     }
