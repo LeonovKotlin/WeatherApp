@@ -34,13 +34,15 @@
 
             <TextView
                 android:id="@+id/tv_temp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textStyleWhiteAndMedium"
+                android:layout_width="206dp"
+                android:layout_height="85dp"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-thin"
+                android:gravity="center"
                 android:text="@string/tv_temp"
-                android:textColor="#FFFFFF"
-                android:textSize="85sp"></TextView>
+                android:textColor="@android:color/white"
+                android:textSize="75sp"></TextView>
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -104,7 +106,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/material_today"
+                        android:src="@drawable/outline_thermostat_black_18"
                         android:contentDescription="@string/todo">
                     </ImageView>
                     <Space
@@ -140,7 +142,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/material_today"
+                        android:src="@drawable/outline_water_20"
                         android:contentDescription="@string/todo">
                     </ImageView>
                     <Space
@@ -178,7 +180,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/material_today"
+                        android:src="@drawable/outline_air_20"
                         android:contentDescription="@string/todo"></ImageView>
 
                     <Space

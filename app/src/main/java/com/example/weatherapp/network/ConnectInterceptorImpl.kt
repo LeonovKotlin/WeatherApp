@@ -1,13 +1,7 @@
 package com.example.weatherapp.network
 
 import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.os.Build
-import android.util.Log
-import androidx.core.content.ContextCompat.getSystemService
 import com.example.weatherapp.network.internal.NoConnectivityExeption
 import okhttp3.Interceptor
 import okhttp3.Response

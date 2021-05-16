@@ -49,7 +49,7 @@ class ForecastFragment : FragmentScoped(), KodeinAware {
         })
         futureWeatherEntry.observe(viewLifecycleOwner, Observer { weatherEntries ->
             if(weatherEntries == null) return@Observer
-            binding.loading.visibility = View.GONE
+            binding.progressbarLoading.visibility = View.GONE
 
             updateDateToFiveDays()
             initRecyclerView(weatherEntries.toFutureWeatherItems())

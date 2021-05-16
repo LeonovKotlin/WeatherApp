@@ -4,14 +4,14 @@
     android:title="Location"
     <SwitchPreference
         android:key="USE_DEVICE_LOCATION"
-        android:title="Input location in the phone"
+        android:title="Включить геолокацию на телефоне!"
         android:summary="info"
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:disableDependentsState="true"/>
     <EditTextPreference
         android:key="CUSTOM_LOCATION"
-        android:title="Location"
-        android:summary="info"
+        android:title="Введите город"
+        android:summary="Введите город для того, чтобы узнать прогноз погоды!"
         android:defaultValue="Gomel"
         android:dependency="USE_DEVICE_LOCATION"/>
 </PreferenceCategory>

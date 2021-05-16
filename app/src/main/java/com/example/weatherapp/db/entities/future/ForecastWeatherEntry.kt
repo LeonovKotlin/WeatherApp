@@ -11,18 +11,18 @@ import com.google.gson.annotations.SerializedName
 data class ForecastWeatherEntry(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    @SerializedName("dt")
-    val dt: Int,
-    @SerializedName("dt_txt")
-    val dtTxt: String,
+    @field:SerializedName("dt")
+    val dt: Int? = null,
+    @field:SerializedName("dt_txt")
+    val dtTxt: String? = null,
     @Embedded(prefix = "main_")
-    val main: Main,
-    @SerializedName("pop")
-    val pop: Double,
-    @SerializedName("visibility")
-    val visibility: Int,
-    @SerializedName("weather")
-    val weather: List<Weather>,
-    @SerializedName("wind")
-    val wind: Wind
+    val main: Main? = null,
+//    @SerializedName("pop")
+//    val pop: Double,
+//    @SerializedName("visibility")
+//    val visibility: Int,
+//    @SerializedName("weather")
+//    val weather: List<Weather>,
+//    @SerializedName("wind")
+//    val wind: Wind
 )

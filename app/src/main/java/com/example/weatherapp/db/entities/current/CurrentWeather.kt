@@ -19,8 +19,6 @@ data class CurrentWeather(
         @field:SerializedName("pressure")
         var pressure: Int,
 
-        @field:SerializedName("feels_like")
-        var feelsLike: Double,
 
         @field:SerializedName("temp_max")
         var tempMax: Double

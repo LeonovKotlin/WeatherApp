@@ -6,7 +6,6 @@ import com.example.weatherapp.db.FutureWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
 import com.example.weatherapp.db.entities.future.FutureWeatherResponse
-import com.example.weatherapp.db.entities.future.WeatherLocation
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
 import com.example.weatherapp.db.unitlocalized.future.SpeceficFutureWeather
 import com.example.weatherapp.network.WeatherNetDataSource
@@ -16,13 +15,13 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZonedDateTime
 import java.util.*
 
 class ForecastRepositoryImpl(
         private val currentWeatherDao: CurrentWeatherDao,
         private val futureWeatherDao: FutureWeatherDao,
+
         private val weatherLocDao: WeatherLocDao,
         private val weatherNetDataSource: WeatherNetDataSource,
         private val locationProvider: LocationPrivider
@@ -46,16 +45,15 @@ class ForecastRepositoryImpl(
         }
     }
 
-    override suspend fun getFutureWeatherList(
-            startDate: LocalDate, metric: Boolean): LiveData<out List<SpeceficFutureWeather>> {
+    override suspend fun getFutureWeatherList(metric: Boolean): LiveData<out List<SpeceficFutureWeather>> {
         return withContext(Dispatchers.IO) {
             initWeatherData()
-            return@withContext if (metric) futureWeatherDao.getFutureWeatherMetric(startDate)
-            else futureWeatherDao.getFutureWeatherImperial(startDate)
+            return@withContext if (metric) futureWeatherDao.getFutureWeatherMetric()
+            else futureWeatherDao.getFutureWeatherImperial()
         }
     }
 
-    override suspend fun getWeatherLocation(): LiveData<WeatherLocation> {
+    override suspend fun getWeatherLocation(): LiveData<CurrentWeatherResponse> {
         return withContext(Dispatchers.IO) {
             return@withContext weatherLocDao.getLocation()
         }
@@ -64,37 +62,37 @@ class ForecastRepositoryImpl(
     private fun persistFechedCurrentWeather(fetchedWeather: CurrentWeatherResponse) {
         GlobalScope.launch(Dispatchers.IO) {
             currentWeatherDao.upsert(fetchedWeather.currentWeather!!)
-            //weatherLocDao.upsert(fetchedWeather.location)//location
-
+            weatherLocDao.upsert(fetchedWeather)//location
         }
     }
-
     private fun persistFechedFutureWeather(fetchedWeather: FutureWeatherResponse) {
         //        weatherLocDao.upsert(fetchedWeather.location)//location
         fun deleteOldForecastData() {
             val today = LocalDate.now()
-            futureWeatherDao.deleteOldEntries(today)
+            futureWeatherDao.deleteOldEntries()
         }
         GlobalScope.launch(Dispatchers.IO) {
             deleteOldForecastData()
             val futureWeatherList = fetchedWeather.entries
-            futureWeatherDao.insert(futureWeatherList)
-            weatherLocDao.upsert(fetchedWeather.location)
+            futureWeatherDao.insert(futureWeatherList!!)
+            weatherLocDao.upsert(fetchedWeather.location!!)
 //            weatherLocDao.upsert(fetchedWeather)
         }
     }
 
     private suspend fun initWeatherData() {
         val lastWeatherLocation = weatherLocDao.getLocationNonLive()
+
         if (lastWeatherLocation == null
                 || locationProvider.haslocationChanged(lastWeatherLocation)) {
             fetchCurrentWeather()
             fetchFutureWeather()
-
             return
         }
         if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
             fetchCurrentWeather()
+        if (isFetchFutureNeeded())
+            fetchFutureWeather()
 
 
 //                     if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
@@ -113,6 +111,11 @@ class ForecastRepositoryImpl(
     private fun isFetchCurrentNeeded(lastFetchTime: ZonedDateTime): Boolean {
         val thirtyMinutesAgo = ZonedDateTime.now().minusMinutes(30)
         return lastFetchTime.isBefore(thirtyMinutesAgo)
+    }
+    private fun isFetchFutureNeeded(): Boolean {
+        val today = LocalDate.now()
+        val futureWeatherCount = futureWeatherDao.countFutureWeather()
+        return  futureWeatherCount < 15
     }
 }
 //    if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))

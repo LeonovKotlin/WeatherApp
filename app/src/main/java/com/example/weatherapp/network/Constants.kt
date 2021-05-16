@@ -1,6 +1,5 @@
 package com.example.weatherapp.network
 
-import com.example.weatherapp.db.entities.future.WeatherLocation
 
 object Constants {
 

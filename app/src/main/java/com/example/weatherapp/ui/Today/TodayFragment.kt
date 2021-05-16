@@ -49,23 +49,20 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val weatherLocation = viewModel.weatherLocation.await()
         weatherLocation.observe(viewLifecycleOwner, Observer { location->
             if (location == null) return@Observer              /////
-          updateLocation(location.name)            /////API
+          updateLocation(location.name)
         })
         //name coord
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             updateDate()
-            updateTemp(it.temp)
+            updateTemp(it.temp.toInt().toDouble())
             updatePressure(it.pressure)
             updateHudimity(it.humidity)
-            updateTempMax(it.tempMax)
-            updateTempMin(it.tempMin)
+            updateTempMax(it.tempMax.toInt().toDouble())
+            updateTempMin(it.tempMin.toInt().toDouble())
 //          Glide.with(this@TodayFragment).load("${it.icon}")
 //         .into(icon_weather)
         })
-    }
-    private fun chooseLocUnit(metric: String, imperial: String): String {
-        return if (viewModel.isMetric) metric else imperial
     }
     private fun updateLocation(location: String) {
         (activity as? AppCompatActivity)?.supportActionBar?.title = location
@@ -74,23 +71,19 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
     private fun updateTemp(temp: Double) {
-        val unit = chooseLocUnit("C", "F")
-        binding.tvTemp.text = "$temp$unit"
+        binding.tvTemp.text = "${"+"}$temp${" ͦ C"}"
     }
     private fun updateTempMax(tempMax: Double) {
-        val unit = chooseLocUnit("C", "F")
-        binding.tvTempMax.text = "$tempMax$unit"
+        binding.tvTempMax.text = "${"+"}$tempMax${"  ͦ C"}"
     }
-    private fun updateTempMin(tempMin: Double) {
-        val unit = chooseLocUnit("C", "F")
-        binding.tvTempMin.text = "$tempMin$unit"
+    private fun updateTempMin(tempMin:  Double) {
+        binding.tvTempMin.text = "${"+"}$tempMin${"  ͦ C"}"
         }
     private fun updateHudimity(hudimity: Int) {
         binding.tvHumidity.text = hudimity.toString()
     }
     private fun updatePressure(pressure: Int) {
-        val unit = chooseLocUnit("mm", "in")
-        binding.tvPressure.text = "$pressure $unit"
+        binding.tvPressure.text = "$pressure"
     }
     }
 

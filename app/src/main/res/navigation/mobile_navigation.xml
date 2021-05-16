@@ -12,7 +12,6 @@
     <fragment
         android:id="@+id/mForecastFragment"
         android:name="com.example.weatherapp.ui.FutureForecast.ForecastFragment"
-        android:label="forecast_fragment"
         tools:layout="@layout/forecast_fragment" />
     <fragment
         android:id="@+id/mOptions"

@@ -13,7 +13,6 @@ class FutureWeatherItem(
 ) : Item() {
     override fun bind(viewHolder: ViewHolder, position: Int) {
         viewHolder.apply {
-        tvStatus.text = weatherEntry.humidity.toString()
             updateDate()
             updateTemp()
         }
@@ -22,9 +21,9 @@ class FutureWeatherItem(
     private fun ViewHolder.updateDate() {
         val dtFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
         tvDate.text = weatherEntry.dtTxt.format(dtFormatter)
-
     }
     private fun ViewHolder.updateTemp() {
         tvTemp.text = weatherEntry.temp.toString()
+
     }
     }
