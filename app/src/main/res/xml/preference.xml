@@ -3,16 +3,20 @@
 <PreferenceCategory>
     android:title="Location"
     <SwitchPreference
-        android:key="USE_DEVICE_LOCATION"
-        android:title="Включить геолокацию на телефоне!"
-        android:summary="info"
         android:defaultValue="false"
-        android:disableDependentsState="true"/>
+        android:disableDependentsState="true"
+        android:icon="@drawable/iv_gps_loc"
+        android:key="USE_DEVICE_LOCATION"
+        android:summary="info"
+        android:title="Включить геолокацию на телефоне!" />
     <EditTextPreference
-        android:key="CUSTOM_LOCATION"
-        android:title="Введите город"
-        android:summary="Введите город для того, чтобы узнать прогноз погоды!"
+        android:background="#FFFFFF"
+        android:backgroundTint="#E1D9D9"
         android:defaultValue="Gomel"
-        android:dependency="USE_DEVICE_LOCATION"/>
+        android:dependency="USE_DEVICE_LOCATION"
+        android:icon="@drawable/iv_gps_city"
+        android:key="CUSTOM_LOCATION"
+        android:summary="Введите город для того, чтобы узнать прогноз погоды!"
+        android:title="Введите город" />
 </PreferenceCategory>
 </PreferenceScreen>

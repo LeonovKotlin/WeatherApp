@@ -48,10 +48,10 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         val todayWeather = viewModel.weather.await()
         val weatherLocation = viewModel.weatherLocation.await()
         weatherLocation.observe(viewLifecycleOwner, Observer { location->
-            if (location == null) return@Observer              /////
+            if (location == null) return@Observer
           updateLocation(location.name)
+          updateWindSpeed(location.wind!!.speed!!)
         })
-        //name coord
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             updateDate()
@@ -85,9 +85,10 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun updatePressure(pressure: Int) {
         binding.tvPressure.text = "$pressure"
     }
+    private fun updateWindSpeed(windspeed: Double) {
+        binding.tvWind.text = "$windspeed"
     }
-
-
+    }
 
 //temp
 //            tv_all.text = it.toString()

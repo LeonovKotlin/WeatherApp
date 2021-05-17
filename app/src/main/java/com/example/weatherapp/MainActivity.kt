@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottom_nav.setupWithNavController(navController)
-        NavigationUI.setupActionBarWithNavController(this, navController)
+//        NavigationUI.setupActionBarWithNavController(this, navController)
 
         requestLocationPermission()
         if (hasLocationPermission()) {
