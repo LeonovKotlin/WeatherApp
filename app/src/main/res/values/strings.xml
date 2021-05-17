@@ -20,4 +20,5 @@
     <string name="tv_sunset">5:30am</string>
     <string name="sunset">Sunset</string>
     <string name="tv_sunset_am">sunset_am</string>
+    <string name="loading">Loading</string>
 </resources>

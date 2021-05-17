@@ -94,7 +94,6 @@ class ForecastRepositoryImpl(
         if (isFetchFutureNeeded())
             fetchFutureWeather()
 
-
 //                     if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
 //                         fetchCurrentWeather()
     }

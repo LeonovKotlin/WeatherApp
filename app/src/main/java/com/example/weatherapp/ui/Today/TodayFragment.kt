@@ -71,7 +71,7 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
     }
     private fun updateTemp(temp: Double) {
-        binding.tvTemp.text = "${"+"}$temp${" ͦ C"}"
+        binding.tvTemp.text = "${"+"}$temp${"  ͦ C"}"
     }
     private fun updateTempMax(tempMax: Double) {
         binding.tvTempMax.text = "${"+"}$tempMax${"  ͦ C"}"
