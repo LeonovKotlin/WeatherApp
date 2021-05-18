@@ -15,6 +15,7 @@ class FutureWeatherItem(
         viewHolder.apply {
             updateDate()
             updateTemp()
+            updateImage()
         }
     }
     override fun getLayout() = R.layout.item_future_weather
@@ -24,6 +25,18 @@ class FutureWeatherItem(
     }
     private fun ViewHolder.updateTemp() {
         tvTemp.text = weatherEntry.temp.toString()
-
     }
+    private fun ViewHolder.updateImage() {
+        if (weatherEntry.pop <= 0) {
+            ivWeather.setImageResource(R.drawable.big_d40)
+        } else if (weatherEntry.pop in 0.1..0.7) {
+            ivWeather.setImageResource(R.drawable.big_d10)
+        } else if (weatherEntry.pop in 0.7..0.9) {
+            ivWeather.setImageResource(R.drawable.big_d40)
+        } else if (weatherEntry.pop in 0.9..1.0) {
+            ivWeather.setImageResource(R.drawable.big_d01)
+        } else {
+            ivWeather.setImageResource(R.drawable.big_d20)
+        }
     }
+}
