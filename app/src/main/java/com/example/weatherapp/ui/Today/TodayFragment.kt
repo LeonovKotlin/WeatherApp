@@ -37,10 +37,10 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun bindUI() = launch {
         val todayWeather = viewModel.weather.await()
         val weatherLocation = viewModel.weatherLocation.await()
-        weatherLocation.observe(viewLifecycleOwner, Observer { location->
-            if (location == null) return@Observer
-          updateLocation(location.name)
-          updateWindSpeed(location.wind!!.speed!!)
+        weatherLocation.observe(viewLifecycleOwner, Observer { entry->
+            if (entry == null) return@Observer
+          updateLocation(entry.name)
+          updateWindSpeed(entry.wind!!.speed!!)
         })
         todayWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
@@ -74,6 +74,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         binding.tvPressure.text = "$pressure${"mm Hg"}"
     }
     private fun updateWindSpeed(windspeed: Double) {
-        binding.tvWind.text = "$windspeed${"m_sec"}"
+        binding.tvWind.text = "$windspeed${"m/sec"}"
     }
     }

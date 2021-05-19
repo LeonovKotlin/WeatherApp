@@ -30,13 +30,16 @@ class FutureWeatherItem(
         if (weatherEntry.pop <= 0) {
             ivWeather.setImageResource(R.drawable.big_d40)
             tvDesc.text = "Overcast Cloud"
-        } else if (weatherEntry.pop in 0.1..0.7) {
+        } else if (weatherEntry.pop in 0.1..0.4) {
             ivWeather.setImageResource(R.drawable.big_d30)
             tvDesc.text = "Broken Clouds"
-        } else if (weatherEntry.pop in 0.7..0.9) {
+        } else if (weatherEntry.pop in 0.0..0.1 && weatherEntry.pressure in 1005..1006) {
+            ivWeather.setImageResource(R.drawable.big_d40)
+            tvDesc.text = "Overcast Cloud"
+        } else if (weatherEntry.pop in 0.44..0.9 && weatherEntry.pressure in 1002..1009) {
             ivWeather.setImageResource(R.drawable.big_d31)
             tvDesc.text = "light rain"
-        } else if (weatherEntry.pop in 0.9..1.0) {
+        } else if (weatherEntry.pop in 0.9..1.0 ) {
             ivWeather.setImageResource(R.drawable.big_d01)
             tvDesc.text = "Moderate rain"
         } else {
