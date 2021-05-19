@@ -24,7 +24,8 @@ class FutureWeatherItem(
         tvDate.text = weatherEntry.dtTxt.format(dtFormatter)
     }
     private fun ViewHolder.updateTemp() {
-        tvTemp.text = weatherEntry.temp.toString()
+    weatherEntry.temp.toInt().toDouble()
+    tvTemp.text = "${"+"}${weatherEntry.temp}${" ͦ C"}"
     }
     private fun ViewHolder.updateImage() {
         if (weatherEntry.pop <= 0) {
@@ -37,7 +38,7 @@ class FutureWeatherItem(
             ivWeather.setImageResource(R.drawable.big_d40)
             tvDesc.text = "Overcast Cloud"
         } else if (weatherEntry.pop in 0.44..0.9 && weatherEntry.pressure in 1002..1009) {
-            ivWeather.setImageResource(R.drawable.big_d31)
+            ivWeather.setImageResource(R.drawable.big_d90)
             tvDesc.text = "light rain"
         } else if (weatherEntry.pop in 0.9..1.0 ) {
             ivWeather.setImageResource(R.drawable.big_d01)
