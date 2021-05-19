@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="158dp"
+        android:layout_height="match_parent"
         android:background="@drawable/bg_gradient_item"
         android:minHeight="?listPreferredItemHeightLarge"><![CDATA[>
       ]]>
@@ -45,7 +45,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:contentDescription="TODO"
-            android:src="@drawable/weather"
+            android:src="@drawable/big_d01"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,15 +53,15 @@
 
         <TextView
             android:id="@+id/tvDate"
-            android:layout_width="125dp"
-            android:layout_height="64dp"
+            android:layout_width="117dp"
+            android:layout_height="54dp"
             android:layout_marginTop="44dp"
             android:gravity="center"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:text="14.05.2021"
             android:textAppearance="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:textColor="@color/white"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.619"
             app:layout_constraintStart_toEndOf="@+id/ivWeather"
@@ -72,10 +72,10 @@
             android:layout_width="101dp"
             android:layout_height="51dp"
             android:text="25.0ͦ C"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:textAppearance="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:textColor="@color/white"
             android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tvDate"
             app:layout_constraintEnd_toStartOf="@+id/ivWeather"
             app:layout_constraintHorizontal_bias="0.262"
@@ -95,6 +95,17 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="188dp" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="162dp"
+            android:layout_height="44dp"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/ivWeather"
+            app:layout_constraintEnd_toEndOf="@+id/ivWeather"
+            app:layout_constraintStart_toStartOf="@+id/ivWeather"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -46,7 +46,7 @@
                 android:gravity="center"
                 android:text="@string/tv_temp"
                 android:textColor="@android:color/white"
-                android:textSize="62sp"
+                android:textSize="60sp"
                 android:textStyle="bold"></TextView>
 
             <LinearLayout
@@ -61,7 +61,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/tv_min_temp"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"></TextView>
 
                 <Space
@@ -75,7 +75,7 @@
                     android:layout_height="match_parent"
                     android:text="@string/tv_max_temp"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"></TextView>
             </LinearLayout>
         </LinearLayout>
@@ -132,13 +132,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                     </TextView>
+
                     <TextView
                         android:id="@+id/tv_pressure"
-                        android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv_pressure_am">
-                    </TextView>
+                        android:textSize="14sp"></TextView>
                 </LinearLayout>
                 <Space
                     android:layout_width="10dp"
@@ -170,13 +169,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                     </TextView>
+
                     <TextView
                         android:id="@+id/tv_humidity"
-                        android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/humidity_am">
-                    </TextView>
+                        android:textSize="14sp"></TextView>
                 </LinearLayout>
 
                 <Space
@@ -213,7 +211,6 @@
                         android:id="@+id/tv_wind"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv_wind_am"
                         android:textSize="14sp"></TextView>
                 </LinearLayout>
                 <Space
