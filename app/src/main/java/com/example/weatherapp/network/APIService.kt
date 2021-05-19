@@ -16,8 +16,6 @@ interface APIService {
 suspend fun getLastWeekWeather(
         @Query("q") location: String = "Gomel"
     ): Response<CurrentWeatherResponse>
-//    Deferred<WeatherHistory>
-
 //https://api.openweathermap.org/data/2.5/forecast?q=Gomel&appid=e7fd5f2e6627b47267f04cba5d03cb5a
 @GET("forecast")
 suspend fun getFutureWeather(

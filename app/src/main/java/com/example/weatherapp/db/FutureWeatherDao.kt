@@ -8,7 +8,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.weatherapp.db.entities.future.ForecastWeatherEntry
-import com.example.weatherapp.db.unitlocalized.future.ImperialFutureWeather
 import com.example.weatherapp.db.unitlocalized.future.MetricFutureWeather
 
 @Dao
@@ -18,9 +17,6 @@ interface FutureWeatherDao {
 
     @Query("select * from future_weather")
     fun getFutureWeatherMetric() : LiveData<List<MetricFutureWeather>>
-
-    @Query("select * from future_weather")
-    fun getFutureWeatherImperial() : LiveData<List<ImperialFutureWeather>>
 
     @Query("select count(id) from future_weather")
     fun countFutureWeather() : Int

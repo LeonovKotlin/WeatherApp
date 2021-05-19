@@ -8,10 +8,6 @@ import com.example.weatherapp.repository.ForecastRepository
 abstract class WeatherViewModel(
         private val forecastRepository: ForecastRepository,
 ) : ViewModel() {
-    private val unit = Unit.METRIC
-
-    val isMetric: Boolean
-        get() = unit== Unit.METRIC
 
     val weatherLocation by lazyDeferred {
         forecastRepository.getWeatherLocation()

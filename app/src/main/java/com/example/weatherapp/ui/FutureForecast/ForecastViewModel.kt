@@ -10,10 +10,9 @@ import com.example.weatherapp.ui.base.WeatherViewModel
 class ForecastViewModel(
         private val forecastRepository: ForecastRepository,
 ) : WeatherViewModel(forecastRepository) {
-        private val unit = Unit.METRIC
 
         val weatherEntries by lazyDeferred {
-            forecastRepository.getFutureWeatherList(isMetric)
+            forecastRepository.getFutureWeatherList()
     }
     }
 class  FutureViewModelFactory(

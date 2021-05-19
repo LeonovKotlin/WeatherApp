@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.weatherapp.db.entities.current.CURRENT_WEATHER_ID2
 import com.example.weatherapp.db.entities.current.CurrentWeather
-import com.example.weatherapp.db.unitlocalized.ImperialCurrentWeather
 import com.example.weatherapp.db.unitlocalized.MetricCurrentWeather
 
 @Dao
@@ -18,6 +17,4 @@ interface CurrentWeatherDao {
     @Query("select * from current_weather where id=$CURRENT_WEATHER_ID2")
     fun getWeatherMetric() : LiveData<MetricCurrentWeather>
 
-    @Query("select * from current_weather where id=$CURRENT_WEATHER_ID2")
-    fun getWeatherImperial() : LiveData<ImperialCurrentWeather>
 }

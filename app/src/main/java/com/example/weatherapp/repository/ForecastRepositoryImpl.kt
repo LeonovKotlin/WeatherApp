@@ -35,18 +35,17 @@ class ForecastRepositoryImpl(
             }
         }
     }
-    override suspend fun getCurrentWeather(metric: Boolean): LiveData<out UnitSpeceficCurrentWeather> {
+    override suspend fun getCurrentWeather(): LiveData<out UnitSpeceficCurrentWeather> {
         return withContext(Dispatchers.IO) {
             initWeatherData()
-            return@withContext if (metric) currentWeatherDao.getWeatherMetric()
-            else currentWeatherDao.getWeatherImperial()
+            return@withContext currentWeatherDao.getWeatherMetric()
+
         }
     }
-    override suspend fun getFutureWeatherList(metric: Boolean): LiveData<out List<SpeceficFutureWeather>> {
+    override suspend fun getFutureWeatherList(): LiveData<out List<SpeceficFutureWeather>> {
         return withContext(Dispatchers.IO) {
             initWeatherData()
-            return@withContext if (metric) futureWeatherDao.getFutureWeatherMetric()
-            else futureWeatherDao.getFutureWeatherImperial()
+            return@withContext futureWeatherDao.getFutureWeatherMetric()
         }
     }
 
@@ -82,7 +81,7 @@ class ForecastRepositoryImpl(
             fetchFutureWeather()
             return
         }
-        if (isFetchCurrentNeeded(ZonedDateTime.now().minusHours(1)))
+        if (isFetchCurrentNeeded(ZonedDateTime.now().minusSeconds(3)))
             fetchCurrentWeather()
         if (isFetchFutureNeeded())
             fetchFutureWeather()

@@ -16,7 +16,7 @@
         android:dependency="USE_DEVICE_LOCATION"
         android:icon="@drawable/iv_gps_city"
         android:key="CUSTOM_LOCATION"
-        android:summary="Введите город для того, чтобы узнать прогноз погоды!"
-        android:title="Введите город" />
+        android:summary="Enter the city to view the weather forecast!"
+        android:title="Enter city" />
 </PreferenceCategory>
 </PreferenceScreen>

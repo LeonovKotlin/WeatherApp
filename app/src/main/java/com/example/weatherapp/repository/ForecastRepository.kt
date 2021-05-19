@@ -6,8 +6,8 @@ import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
 import com.example.weatherapp.db.unitlocalized.future.SpeceficFutureWeather
 
 interface ForecastRepository {
-suspend fun getCurrentWeather(metric: Boolean) : LiveData<out UnitSpeceficCurrentWeather>
-suspend fun getFutureWeatherList(metric: Boolean
+suspend fun getCurrentWeather() : LiveData<out UnitSpeceficCurrentWeather>
+suspend fun getFutureWeatherList(
 ) : LiveData<out List<SpeceficFutureWeather>>
 suspend fun getWeatherLocation() : LiveData<CurrentWeatherResponse>
 
