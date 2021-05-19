@@ -50,6 +50,7 @@ class ForecastFragment : FragmentScoped(), KodeinAware {
         futureWeatherEntry.observe(viewLifecycleOwner, Observer { weatherEntries ->
             if(weatherEntries == null) return@Observer
             binding.progressbarLoading.visibility = View.GONE
+            binding.tvLoading.visibility = View.GONE
 
             updateDateToFiveDays()
             initRecyclerView(weatherEntries.toFutureWeatherItems())
@@ -75,7 +76,7 @@ class ForecastFragment : FragmentScoped(), KodeinAware {
            adapter = groupAdapter
            }
         groupAdapter.setOnItemClickListener { item, view ->
-            Toast.makeText(this@ForecastFragment.context, "Warn", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@ForecastFragment.context, "Weather", Toast.LENGTH_SHORT).show()
         }
         }
 }

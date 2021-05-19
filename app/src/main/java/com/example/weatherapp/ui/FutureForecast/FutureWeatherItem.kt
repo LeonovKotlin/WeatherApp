@@ -25,7 +25,7 @@ class FutureWeatherItem(
     }
     private fun ViewHolder.updateTemp() {
     weatherEntry.temp.toInt().toDouble()
-    tvTemp.text = "${"+"}${weatherEntry.temp}${" ͦ C"}"
+    tvTemp.text = "${"+"}${weatherEntry.temp.toInt().toDouble()}${" ͦ C"}"
     }
     private fun ViewHolder.updateImage() {
         if (weatherEntry.pop <= 0) {
