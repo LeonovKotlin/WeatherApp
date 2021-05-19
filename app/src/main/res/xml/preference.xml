@@ -7,12 +7,12 @@
         android:disableDependentsState="true"
         android:icon="@drawable/iv_gps_loc"
         android:key="USE_DEVICE_LOCATION"
-        android:summary="info"
-        android:title="Включить геолокацию на телефоне!" />
+        android:summary="GPS"
+        android:title="GPS" />
     <EditTextPreference
         android:background="#FFFFFF"
         android:backgroundTint="#E1D9D9"
-        android:defaultValue="Gomel"
+        android:defaultValue="Minsk"
         android:dependency="USE_DEVICE_LOCATION"
         android:icon="@drawable/iv_gps_city"
         android:key="CUSTOM_LOCATION"

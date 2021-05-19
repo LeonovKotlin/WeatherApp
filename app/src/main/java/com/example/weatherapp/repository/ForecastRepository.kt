@@ -10,5 +10,4 @@ suspend fun getCurrentWeather() : LiveData<out UnitSpeceficCurrentWeather>
 suspend fun getFutureWeatherList(
 ) : LiveData<out List<SpeceficFutureWeather>>
 suspend fun getWeatherLocation() : LiveData<CurrentWeatherResponse>
-
 }

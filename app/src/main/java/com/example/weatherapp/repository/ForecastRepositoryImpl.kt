@@ -57,16 +57,11 @@ class ForecastRepositoryImpl(
     private fun persistFechedCurrentWeather(fetchedWeather: CurrentWeatherResponse) {
         GlobalScope.launch(Dispatchers.IO) {
             currentWeatherDao.upsert(fetchedWeather.currentWeather!!)
-            weatherLocDao.upsert(fetchedWeather)//location
+            weatherLocDao.upsert(fetchedWeather)
         }
     }
     private fun persistFechedFutureWeather(fetchedWeather: FutureWeatherResponse) {
-        fun deleteOldForecastData() {
-            val today = LocalDate.now()
-            futureWeatherDao.deleteOldEntries()
-        }
         GlobalScope.launch(Dispatchers.IO) {
-            deleteOldForecastData()
             val futureWeatherList = fetchedWeather.entries
             futureWeatherDao.insert(futureWeatherList!!)
             weatherLocDao.upsert(fetchedWeather.location!!)
@@ -85,9 +80,6 @@ class ForecastRepositoryImpl(
             fetchCurrentWeather()
         if (isFetchFutureNeeded())
             fetchFutureWeather()
-
-//                     if (isFetchCurrentNeeded(lastWeatherLocation.zonedDateTime))
-//                         fetchCurrentWeather()
     }
     private suspend fun fetchCurrentWeather() {
         weatherNetDataSource.fetchCurrentWeather(locationProvider.getLocationStr())
@@ -100,7 +92,6 @@ class ForecastRepositoryImpl(
         return lastFetchTime.isBefore(thirtyMinutesAgo)
     }
     private fun isFetchFutureNeeded(): Boolean {
-        val today = LocalDate.now()
         val futureWeatherCount = futureWeatherDao.countFutureWeather()
         return  futureWeatherCount < 15
     }

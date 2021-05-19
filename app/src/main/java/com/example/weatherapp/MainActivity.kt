@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 bindLocationManager()
             else
-                Toast.makeText(this, "Set location in settings", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Current Weather!", Toast.LENGTH_LONG).show()
         }
     }
 }

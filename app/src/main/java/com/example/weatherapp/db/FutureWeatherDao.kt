@@ -21,6 +21,4 @@ interface FutureWeatherDao {
     @Query("select count(id) from future_weather")
     fun countFutureWeather() : Int
 
-    @Query("delete from future_weather")
-    fun deleteOldEntries()
 }
