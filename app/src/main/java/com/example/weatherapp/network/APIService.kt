@@ -22,12 +22,11 @@ suspend fun getLastWeekWeather(
 @GET("forecast")
 suspend fun getFutureWeather(
         @Query("q") location: String = "Gomel"
-
 ): Response<FutureWeatherResponse>
 
     companion object  {
         operator fun invoke(
-                connectInterceptor: ConnectInterceptor
+        connectInterceptor: ConnectInterceptor
         ) : APIService {
 
             val reqestInterceptor = Interceptor { chain->
@@ -52,16 +51,9 @@ suspend fun getFutureWeather(
                             .client(okHttpClient)
                             .baseUrl(Constants.openWeatherBaseURL)
                             .addConverterFactory(GsonConverterFactory.create())
-//                          .addCallAdapterFactory(CoroutineCallAdapterFactory())
                             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                             .build()
                             .create(APIService::class.java)
             }
         }
     }
-
-//        @GET("onecall/timemachine")
-//        @Query("lat") lat: Double = 53.9,
-//        @Query("lon") lon: Double = 27.56,
-//        @Query("dt") period: Long = 1619481600,
-//        @Query("appid") apiKey: String = Constants.openWeatherApiKey

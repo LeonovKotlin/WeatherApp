@@ -12,7 +12,9 @@ data class MetricFutureWeather(
         @ColumnInfo(name = "main_humidity")
         override val humidity: Int,
         @ColumnInfo(name = "main_pressure")
-        override val pressure: Int
+        override val pressure: Int,
+        @ColumnInfo(name = "pop")
+        override val pop: Double
 ) : SpeceficFutureWeather
 
 //@ColumnInfo(name = "main_temp")

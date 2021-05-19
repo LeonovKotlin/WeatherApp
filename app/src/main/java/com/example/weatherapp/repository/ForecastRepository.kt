@@ -2,7 +2,6 @@ package com.example.weatherapp.repository
 
 import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-
 import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
 import com.example.weatherapp.db.unitlocalized.future.SpeceficFutureWeather
 

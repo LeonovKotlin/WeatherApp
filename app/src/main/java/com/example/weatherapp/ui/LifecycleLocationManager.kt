@@ -22,7 +22,6 @@ class LifecycleLocationManager(
         fastestInterval = 5000
         priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
     }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     @SuppressLint("MissingPermission")
     fun startLocationUpdates() {

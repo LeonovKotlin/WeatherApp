@@ -33,16 +33,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(TodayViewModel::class.java)//
         bindUI()
-//        val apiService = APIService(ConnectInterceptorImpl(this.requireContext()))
-//        val weatherNetDataSource = WeatherNetDataSourceImpl(apiService)
-//        weatherNetDataSource.downloadedCurrentWeather.observe(viewLifecycleOwner, Observer {
-//            tv.text = it.toString()
-//            tv.text = weatherHistory?.current.toString()
-//        })
-//        GlobalScope.launch (Dispatchers.Main){
-//        weatherNetDataSource.fetchCurrentWeather(53.9,27.56,1619481600)
-//        }
-//        getHistoricalWeather()
     }
     private fun bindUI() = launch {
         val todayWeather = viewModel.weather.await()
@@ -60,8 +50,6 @@ class TodayFragment : FragmentScoped(), KodeinAware {
             updateHudimity(it.humidity)
             updateTempMax(it.tempMax.toInt().toDouble())
             updateTempMin(it.tempMin.toInt().toDouble())
-//          Glide.with(this@TodayFragment).load("${it.icon}")
-//         .into(icon_weather)
         })
     }
     private fun updateLocation(location: String) {
@@ -74,45 +62,18 @@ class TodayFragment : FragmentScoped(), KodeinAware {
         binding.tvTemp.text = "${"+"}$temp${"  ͦ C"}"
     }
     private fun updateTempMax(tempMax: Double) {
-        binding.tvTempMax.text = "${"+"}$tempMax${"  ͦ C"}"
+        binding.tvTempMax.text = "${"Max: "}${"+"}$tempMax${"  ͦ C"}"
     }
     private fun updateTempMin(tempMin:  Double) {
-        binding.tvTempMin.text = "${"+"}$tempMin${"  ͦ C"}"
+        binding.tvTempMin.text = "${"Min: "}${"+"}$tempMin${"  ͦ C"}"
         }
     private fun updateHudimity(hudimity: Int) {
         binding.tvHumidity.text = hudimity.toString()
     }
     private fun updatePressure(pressure: Int) {
-        binding.tvPressure.text = "$pressure"
+        binding.tvPressure.text = "$pressure${"mm Hg"}"
     }
     private fun updateWindSpeed(windspeed: Double) {
-        binding.tvWind.text = "$windspeed"
+        binding.tvWind.text = "$windspeed${"m_sec"}"
     }
     }
-
-//temp
-//            tv_all.text = it.toString()
-//           group_load.visibility = View.GONE
-//observ Activ
-//    private fun getHistoricalWeather() {
-//        lifecycleScope.launchWhenCreated {
-//            val response = try {
-//                APIService.apiService.getLastWeekWeather()
-//            } catch (e: IOException) {
-//                Log.e(TAG, "you might not have internet connection")
-//                return@launchWhenCreated
-//            } catch (e: HttpException) {
-//                Log.e(TAG, "you might not have internet connection")
-//                return@launchWhenCreated
-//            }
-//            if (response.isSuccessful && response.body() != null) {
-//                val historicalWeather = response.body()
-//                Log.d(TAG, "WeatherHistory: $historicalWeather")
-//            } else {
-//                Log.e(TAG, "Request failed. Code: ${response.code()}, Error: ${response.message()}")
-//            }
-//        }
-//
-
-//    }
-//}

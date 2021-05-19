@@ -46,7 +46,6 @@ class LocationPrividerImpl(
             return false
         val deviceLocation = getLastDeviceLocation().await()
                 ?: return false
-//
         val comp = 0.03 //comparisonThreshold
         return  Math.abs(deviceLocation.latitude - lastWeatherLocation.coord!!.lat!!) > comp &&
                 Math.abs(deviceLocation.longitude- lastWeatherLocation.coord!!.lon!!) > comp

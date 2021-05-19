@@ -28,14 +28,3 @@ interface FutureWeatherDao {
     @Query("delete from future_weather")
     fun deleteOldEntries()
 }
-//@Query("select * from future_weather where dtTxt(dtTxt) >= data(:startDate)")
-//fun getFutureWeatherMetric(startDate: LocalDate) : LiveData<List<MetricFutureWeather>>
-//
-//@Query("select * from future_weather where dt(dt) >= data(:startDate)")
-//fun getFutureWeatherImperial(startDate: LocalDate) : LiveData<List<ImperialFutureWeather>>
-//
-//@Query("select count(id) from future_weather where dt(dt) >= data(:startDate)")
-//fun countFutureWeather(startDate: LocalDate) : Int
-//
-//@Query("delete from future_weather where dt(dt) < data(:firstDateToKeep)")
-//fun deleteOldEntries(firstDateToKeep: LocalDate)

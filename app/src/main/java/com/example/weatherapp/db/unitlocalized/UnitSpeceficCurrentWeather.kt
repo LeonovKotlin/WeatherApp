@@ -8,5 +8,4 @@ interface UnitSpeceficCurrentWeather  {
     val pressure: Int
     val tempMax: Double
     val tempMin: Double
-
 }

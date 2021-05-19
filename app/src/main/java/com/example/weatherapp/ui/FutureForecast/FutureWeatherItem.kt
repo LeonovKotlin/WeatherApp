@@ -29,12 +29,16 @@ class FutureWeatherItem(
     private fun ViewHolder.updateImage() {
         if (weatherEntry.pop <= 0) {
             ivWeather.setImageResource(R.drawable.big_d40)
+            tvDesc.text = "Overcast Cloud"
         } else if (weatherEntry.pop in 0.1..0.7) {
-            ivWeather.setImageResource(R.drawable.big_d10)
+            ivWeather.setImageResource(R.drawable.big_d30)
+            tvDesc.text = "Broken Clouds"
         } else if (weatherEntry.pop in 0.7..0.9) {
-            ivWeather.setImageResource(R.drawable.big_d40)
+            ivWeather.setImageResource(R.drawable.big_d31)
+            tvDesc.text = "light rain"
         } else if (weatherEntry.pop in 0.9..1.0) {
             ivWeather.setImageResource(R.drawable.big_d01)
+            tvDesc.text = "Moderate rain"
         } else {
             ivWeather.setImageResource(R.drawable.big_d20)
         }

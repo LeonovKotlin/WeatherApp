@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         bottom_nav.setupWithNavController(navController)
-//        NavigationUI.setupActionBarWithNavController(this, navController)
 
         requestLocationPermission()
         if (hasLocationPermission()) {
@@ -46,21 +45,17 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         } else
             requestLocationPermission()
     }
-
     private fun bindLocationManager() {
         LifecycleLocationManager(
                 this,
                 fusedLocationProviderClient, locationCallBack)
-
     }
-
     private fun requestLocationPermission() {
         ActivityCompat.requestPermissions(
                 this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION),
                 MY_PERMISSION_ACCESS_COARSE_LOCATION
         )
     }
-
     private fun hasLocationPermission(): Boolean {
         return ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED

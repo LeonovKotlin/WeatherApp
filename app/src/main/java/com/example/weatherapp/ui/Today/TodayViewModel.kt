@@ -12,12 +12,9 @@ class TodayViewModel(
 ) : WeatherViewModel(forecastRepository) {
     private val unit = Unit.METRIC
 
-
-
     val weather by lazyDeferred {
         forecastRepository.getCurrentWeather(isMetric)}
 }
-
 class  TodayViewModelFactory(
     private val forecastRepository: ForecastRepository
 ) : ViewModelProvider.NewInstanceFactory() {

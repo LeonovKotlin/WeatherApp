@@ -37,7 +37,6 @@ class ForecastApplication : Application(), KodeinAware {
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(),instance(),instance(),instance(), instance()) }
         bind() from provider {TodayViewModelFactory(instance())  }
         bind() from provider {FutureViewModelFactory(instance())  }
-
     }
     override fun onCreate() {
         super.onCreate()
