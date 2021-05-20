@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/mTodayFragment"
-    android:title="Today"
+    android:title="@string/today"
     android:icon="@drawable/today"/>
-<item
-    android:id="@+id/mForecastFragment"
-    android:title="Forecast"
-    android:icon="@drawable/forecast"/>
+    <item
+        android:id="@+id/mForecastFragment"
+        android:icon="@drawable/forecast"
+        android:title="@string/_5_days" />
 <item
     android:id="@+id/mOptions"
-    android:title="Options"
+    android:title="@string/options"
     android:icon="@drawable/material_options"/>
 </menu>

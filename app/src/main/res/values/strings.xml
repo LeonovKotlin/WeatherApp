@@ -24,4 +24,8 @@
     <string name="temp">25.0ͦ C</string>
     <string name="todo">TODO</string>
     <string name="ivbrand">brand</string>
+    <string name="today">Today</string>
+    <string name="options">Options</string>
+    <string name="forecast">Forecast</string>
+    <string name="_5_days">5 Days</string>
 </resources>
