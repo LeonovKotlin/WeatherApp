@@ -2,6 +2,15 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 <PreferenceCategory>
     android:title="Location"
+    <SwitchPreference
+        android:defaultValue="false"
+        android:disableDependentsState="true"
+        android:icon="@drawable/iv_gps_loc"
+        android:key="USE_DEVICE_LOCATION"
+        android:persistent="false"
+        android:summary="GPS"
+        android:enabled="true"
+        android:title="GPS" />
     <EditTextPreference
         android:background="#FFFFFF"
         android:backgroundTint="#E1D9D9"
