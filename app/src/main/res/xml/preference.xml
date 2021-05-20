@@ -7,9 +7,8 @@
         android:disableDependentsState="true"
         android:icon="@drawable/iv_gps_loc"
         android:key="USE_DEVICE_LOCATION"
-        android:persistent="false"
-        android:summary="GPS"
-        android:enabled="true"
+        android:summary="gps"
+        android:enabled="false"
         android:title="GPS" />
     <EditTextPreference
         android:background="#FFFFFF"
