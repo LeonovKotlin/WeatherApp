@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_gradient_item"
         android:minHeight="?listPreferredItemHeightLarge">
+
         <ImageView
             android:id="@+id/ivWeather3"
             android:layout_width="30dp"

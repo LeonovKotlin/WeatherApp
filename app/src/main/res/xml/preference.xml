@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <PreferenceCategory>
     android:title="Location"
     <SwitchPreference
         android:defaultValue="false"
         android:disableDependentsState="true"
         android:icon="@drawable/iv_gps_loc"
+        app:isPreferenceVisible="false"
         android:key="USE_DEVICE_LOCATION"
-        android:summary="gps"
-        android:enabled="false"
-        android:title="GPS" />
+        android:summary="gps" />
     <EditTextPreference
         android:background="#FFFFFF"
         android:backgroundTint="#E1D9D9"
         android:defaultValue="Minsk"
         android:icon="@drawable/iv_gps_city"
         android:key="CUSTOM_LOCATION"
-        android:summary="Enter the city to view the weather forecast!"
-        android:title="Enter city" />
+        android:summary="Enter the City to view the weather forecast!"
+        android:title="Enter City" />
 </PreferenceCategory>
 </PreferenceScreen>
