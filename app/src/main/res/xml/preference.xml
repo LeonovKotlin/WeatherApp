@@ -2,18 +2,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 <PreferenceCategory>
     android:title="Location"
-    <SwitchPreference
-        android:defaultValue="false"
-        android:disableDependentsState="true"
-        android:icon="@drawable/iv_gps_loc"
-        android:key="USE_DEVICE_LOCATION"
-        android:summary="GPS"
-        android:title="GPS" />
     <EditTextPreference
         android:background="#FFFFFF"
         android:backgroundTint="#E1D9D9"
         android:defaultValue="Minsk"
-        android:dependency="USE_DEVICE_LOCATION"
         android:icon="@drawable/iv_gps_city"
         android:key="CUSTOM_LOCATION"
         android:summary="Enter the city to view the weather forecast!"
