@@ -23,4 +23,5 @@
     <string name="dateTxt">14.05.2021</string>
     <string name="temp">25.0ͦ C</string>
     <string name="todo">TODO</string>
+    <string name="ivbrand">brand</string>
 </resources>
