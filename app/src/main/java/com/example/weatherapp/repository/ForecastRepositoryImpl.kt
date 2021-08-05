@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import com.example.weatherapp.db.CurrentWeatherDao
 import com.example.weatherapp.db.FutureWeatherDao
 import com.example.weatherapp.db.WeatherLocDao
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-import com.example.weatherapp.db.entities.future.FutureWeatherResponse
-import com.example.weatherapp.db.unitlocalized.UnitSpeceficCurrentWeather
+import com.example.weatherapp.network.response.CurrentWeatherResponse
+import com.example.weatherapp.network.response.FutureWeatherResponse
+import com.example.weatherapp.db.unitlocalized.current.UnitSpeceficCurrentWeather
 import com.example.weatherapp.db.unitlocalized.future.SpeceficFutureWeather
 import com.example.weatherapp.network.WeatherNetDataSource
 import com.example.weatherapp.network.provider.LocationPrivider
@@ -14,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.threeten.bp.LocalDate
 import org.threeten.bp.ZonedDateTime
 import java.util.*
 

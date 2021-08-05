@@ -19,10 +19,4 @@ data class ForecastWeatherEntry(
     val main: Main? = null,
     @SerializedName("pop")
     val pop: Double,
-//    @SerializedName("visibility")
-//    val visibility: Int,
-//    @SerializedName("weather")
-//    val weather: List<Weather>,
-//    @SerializedName("wind")
-//    val wind: Wind
 )

@@ -1,6 +1,8 @@
-package com.example.weatherapp.db.entities.current
+package com.example.weatherapp.network.response
 
 import androidx.room.*
+import com.example.weatherapp.db.entities.current.Coord
+import com.example.weatherapp.db.entities.current.CurrentWeather
 import com.google.gson.annotations.SerializedName
 
 const val CURRENT_WEATHER_ID = 0

@@ -5,6 +5,7 @@ import android.content.Context
 import android.preference.PreferenceManager
 import com.example.weatherapp.db.ForecastDatabase
 import com.example.weatherapp.network.*
+import com.example.weatherapp.network.api.APIService
 import com.example.weatherapp.network.provider.LocationPrivider
 import com.example.weatherapp.network.provider.LocationPrividerImpl
 import com.example.weatherapp.repository.ForecastRepository

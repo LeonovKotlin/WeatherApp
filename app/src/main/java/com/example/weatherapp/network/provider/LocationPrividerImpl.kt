@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.content.ContextCompat
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.network.response.CurrentWeatherResponse
 import com.example.weatherapp.internal.asDeferred
 import com.example.weatherapp.network.internal.LocationPermissionNotException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -60,7 +60,6 @@ class LocationPrividerImpl(
     private fun isUsingDeviseLocation() : Boolean {
         return preferences.getBoolean(USE_DEVICE_LOCATION, true)
     }
-
 private fun getCustomLocationName() : String? {
         return preferences.getString(CUSTOM_LOCATION,null)
     }

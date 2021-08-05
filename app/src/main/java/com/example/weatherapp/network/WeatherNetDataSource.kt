@@ -1,8 +1,8 @@
 package com.example.weatherapp.network
 
 import androidx.lifecycle.LiveData
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-import com.example.weatherapp.db.entities.future.FutureWeatherResponse
+import com.example.weatherapp.network.response.CurrentWeatherResponse
+import com.example.weatherapp.network.response.FutureWeatherResponse
 
 interface WeatherNetDataSource {
     val downloadedCurrentWeather: LiveData<CurrentWeatherResponse>

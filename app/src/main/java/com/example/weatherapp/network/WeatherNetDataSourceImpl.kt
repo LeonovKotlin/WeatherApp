@@ -3,9 +3,10 @@ package com.example.weatherapp.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
-import com.example.weatherapp.db.entities.future.FutureWeatherResponse
+import com.example.weatherapp.network.response.CurrentWeatherResponse
+import com.example.weatherapp.network.api.APIService
 import com.example.weatherapp.network.internal.NoConnectivityExeption
+import com.example.weatherapp.network.response.FutureWeatherResponse
 
 class WeatherNetDataSourceImpl(
 private val apiService: APIService

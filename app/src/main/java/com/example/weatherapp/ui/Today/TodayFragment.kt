@@ -76,4 +76,4 @@ class TodayFragment : FragmentScoped(), KodeinAware {
     private fun updateWindSpeed(windspeed: Double) {
         binding.tvWind.text = "$windspeed${"m/sec"}"
     }
-    }
+}

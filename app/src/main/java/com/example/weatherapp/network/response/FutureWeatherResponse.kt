@@ -1,7 +1,7 @@
-package com.example.weatherapp.db.entities.future
+package com.example.weatherapp.network.response
 
 
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.db.entities.future.ForecastWeatherEntry
 import com.google.gson.annotations.SerializedName
 
 data class FutureWeatherResponse(

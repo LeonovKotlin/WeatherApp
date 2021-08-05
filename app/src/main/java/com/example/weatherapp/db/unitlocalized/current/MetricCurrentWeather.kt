@@ -1,4 +1,4 @@
-package com.example.weatherapp.db.unitlocalized
+package com.example.weatherapp.db.unitlocalized.current
 
 import androidx.room.ColumnInfo
 

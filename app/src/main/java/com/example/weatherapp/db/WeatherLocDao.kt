@@ -5,8 +5,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.weatherapp.db.entities.current.CURRENT_WEATHER_ID
-import com.example.weatherapp.db.entities.current.CurrentWeatherResponse
+import com.example.weatherapp.network.response.CURRENT_WEATHER_ID
+import com.example.weatherapp.network.response.CurrentWeatherResponse
 
 @Dao
 interface WeatherLocDao {

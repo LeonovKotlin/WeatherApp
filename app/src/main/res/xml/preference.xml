@@ -13,7 +13,7 @@
     <EditTextPreference
         android:background="#FFFFFF"
         android:backgroundTint="#E1D9D9"
-        android:defaultValue="Minsk"
+        android:defaultValue="Gomel"
         android:icon="@drawable/iv_gps_city"
         android:key="CUSTOM_LOCATION"
         android:summary="Enter the City to view the weather forecast!"

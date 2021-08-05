@@ -2,7 +2,6 @@ package com.example.weatherapp.ui.Today
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weatherapp.internal.Unit
 import com.example.weatherapp.internal.lazyDeferred
 import com.example.weatherapp.repository.ForecastRepository
 import com.example.weatherapp.ui.base.WeatherViewModel
